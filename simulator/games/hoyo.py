@@ -1,11 +1,16 @@
 import random
-from .base import Game
+from ._base import Game
 
 class HoyoverseGames(Game):
     def run_simulation(self, target_rank):
         # 원신: 0.6% / 74회 soft pity / 90회 hard pity / 4성 10회 천장
         target_copies = target_rank + 1
-        stats = {"game": "Genshin", "total_pulls": 0, "pickup_5": 0, "other_5": 0, "4_star": 0, "log":[]}
+        stats = {"game": self.game_name,
+                 "total_pulls": 0,
+                 "pickup_5": 0,
+                 "other_5": 0,
+                 "4_star": 0,
+                 "log":[]}
         
         pity_5 = 0
         pity_4 = 0

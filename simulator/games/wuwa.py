@@ -1,11 +1,16 @@
 import random
-from .base import Game
+from ._base import Game
 
 class WutheringWaves(Game):
     def run_simulation(self, target_rank):
         # 명조: 0.8% / 66회 soft pity / 80회 hard pity / 4성 10회 천장
         target_copies = target_rank + 1
-        stats = {"game": "WuWa", "total_pulls": 0, "pickup_5": 0, "other_5": 0, "4_star": 0, "log":[]}
+        stats = {"game": self.game_name,
+                 "total_pulls": 0,
+                 "pickup_5": 0,
+                 "other_5": 0,
+                 "4_star": 0,
+                 "log":[]}
         
         pity_5 = 0
         pity_4 = 0
@@ -34,10 +39,13 @@ class WutheringWaves(Game):
                 
                 if is_pickup:
                     stats["pickup_5"] += 1
-                    stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ PICKUP Obtained (Copies: {stats['pickup_5']})")
+                    if int(stats["pickup_5"]) == 1:
+                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (현재 명함)")
+                    else:
+                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (현재 {int(stats['pickup_5'])-1}번)")
                 else:
                     stats["other_5"] += 1
-                    stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ Standard Character")
+                    stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 상시 획득 (픽뚫)")
                 continue
             
             # 4성: 6.0% 확률

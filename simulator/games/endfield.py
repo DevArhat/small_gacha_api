@@ -32,6 +32,9 @@ class Endfield(Game):
             guarantee_240_counter += 1
             rnd = random.random()
             
+            if stacks == 30:
+                pass
+            
             # 240회 보너스 (돌파권) 체크
             if guarantee_240_counter == 240:
                 stats["pickup_6"] += 1

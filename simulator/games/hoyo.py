@@ -1,11 +1,11 @@
 import random
 from ._base import Game
 
+# 기본확률 0.6%
+# 74회부터 확률 증가
+# 90회 천장
 class HoyoverseGames(Game):
     def run_simulation(self, target_rank):
-        # 기본확률 0.6%
-        # 74회부터 확률 증가
-        # 90회 천장
         target_copies = target_rank + 1
         stats = {"game": self.game_name,
                  "total_pulls": 0,

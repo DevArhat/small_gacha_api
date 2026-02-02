@@ -1,11 +1,16 @@
 import random
 from ._base import Game
 
+# 기본확률 0.8%
+# 65회부터 확률 증가
+# 120회 확정 (1회 only)
+# 240회 확정 (돌파권 지급)
+# 6성 -> 무뽑재료 2000
+# 5성 -> 무뽑재료 200
+# 4성 -> 무뽑재료 20
+# TODO 30회 시 픽업 카운터와 별개의 10뽑 증정됨. 이 10연에서는 5성 1개 확정
 class Endfield(Game):
     def run_simulation(self, target_rank):
-        # 엔드필드: 0.8% / 65회 soft / 80회 hard / 50:50
-        # 120회 확정 (1회 only)
-        # 240회 확정 (재료 아이템 = 1돌파 취급)
         target_copies = target_rank + 1
         stats = {"game": self.game_name,
                  "total_pulls": 0,
@@ -15,14 +20,14 @@ class Endfield(Game):
                  "4_star": 0, 
                  "log": []}
         
-        pity_6 = 0
+        stacks = 0
         guarantee_120_counter = 0
         guarantee_240_counter = 0
         used_120_guarantee = False 
         
         while stats["pickup_6"] < target_copies:
             stats["total_pulls"] += 1
-            pity_6 += 1
+            stacks += 1
             guarantee_120_counter += 1
             guarantee_240_counter += 1
             rnd = random.random()
@@ -40,17 +45,17 @@ class Endfield(Game):
                 stats["pickup_6"] += 1
                 used_120_guarantee = True # 1회용
                 guarantee_120_counter = 0
-                pity_6 = 0 # 6성 획득이므로 천장스택 리셋
+                stacks = 0 # 6성 획득이므로 천장스택 리셋
                 stats["log"].append(f"[Pull {stats['total_pulls']}] 120뽑 확정명함 획득")
                 continue
 
             # 6성 확률 계산
             rate_6 = 0.008
-            if pity_6 >= 65:
-                rate_6 = 0.008 + (pity_6 - 64) * 0.05
+            if stacks >= 65:
+                rate_6 = 0.008 + (stacks - 65) * 0.05
             
-            if pity_6 == 80 or rnd < rate_6:
-                pity_6 = 0
+            if stacks == 80 or rnd < rate_6:
+                stacks = 0
                 # 50/50 확률
                 if random.choice([True, False]):
                     stats["pickup_6"] += 1
@@ -60,7 +65,7 @@ class Endfield(Game):
                     if int(stats["pickup_6"]) == 1:
                         stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 픽업 획득 (현재 명함)")
                     else:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 픽업 획득 (현재 {int(stats['pickup_6'])-1}돌)")
+                        stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 픽업 획득 (현재 {int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
                 else:
                     stats["other_6"] += 1
                     # 픽뚫 시에는 120 카운터 유지됨

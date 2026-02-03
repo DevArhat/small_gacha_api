@@ -6,6 +6,10 @@ from ._base import Game
 # 80회 천장
 class WutheringWaves(Game):
     def run_simulation(self, target_rank):
+        # 6보다 큰 타겟 돌파가 들어오면 6돌로 강제 고정
+        if target_rank > 6:
+            target_rank = 6
+            
         target_copies = target_rank + 1
         stats = {"game": self.game_name,
                  "total_pulls": 0,

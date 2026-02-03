@@ -8,9 +8,12 @@ from ._base import Game
 # 6성 -> 무뽑재료 2000
 # 5성 -> 무뽑재료 200
 # 4성 -> 무뽑재료 20
-# TODO 30회 시 픽업 카운터와 별개의 10뽑 증정됨. 이 10연에서는 5성 1개 확정
 class Endfield(Game):
     def run_simulation(self, target_rank):
+        # 명방은 풀돌이 5잠재라서 그 이상이 들어오면 강제로 5돌로 고정함
+        if target_rank > 5:
+            target_rank = 5
+            
         target_copies = target_rank + 1
         stats = {"game": self.game_name,
                  "total_pulls": 0,
@@ -32,14 +35,49 @@ class Endfield(Game):
             guarantee_240_counter += 1
             rnd = random.random()
             
+            # 긴급모집
+            # 30회 뽑기 시 10회 무료,
+            # 다른 모든 스택과 무관하므로 긴급모집 로직 종료 후 continue하지 않음
+            # 단, 긴급모집 후 대상 copy 수가 만족되었을 경우 메인 while문을 탈출
             if stacks == 30:
-                pass
+                # 긴급모집 10회 중 5성 1회 확정
+                emergency_5star = False
+                
+                for i in range(10):
+                    if rnd < 0.008:
+                        if random.choice([True, False]):
+                            stats["pickup_6"] += 1
+                            # 픽업 획득 시 120 카운터 초기화
+                            guarantee_120_counter = 0
+                            used_120_guarantee = True # 1회용
+                    
+                            if int(stats["pickup_6"]) == 1:
+                                stats["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 (현재 명함)")
+                            else:
+                                stats["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 (현재 {int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
+                    
+                        else:
+                            stats["other_6"] += 1
+                            stats["log"].append(f"[긴급 {i+1}] 6★ 상시 획득 (픽뚫)")
+                        continue
+                    
+                    if rnd < 0.08:
+                        stats["5_star"] += 1
+                        emergency_5star = True
+                
+                if not emergency_5star:
+                    stats["5_star"] += 1
+    
+                if stats["pickup_6"] >= target_copies:
+                    break
+                
+
             
             # 240회 보너스 (돌파권) 체크
             if guarantee_240_counter == 240:
                 stats["pickup_6"] += 1
                 guarantee_240_counter = 0
-                stats["log"].append(f"[Pull {stats['total_pulls']}] 240뽑 돌파권 획득")
+                stats["log"].append(f"[Pull {stats['total_pulls']}] 240뽑 돌파권 획득 (현재 {int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
                 if stats["pickup_6"] >= target_copies:
                     break
 
@@ -71,7 +109,6 @@ class Endfield(Game):
                         stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 픽업 획득 (현재 {int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
                 else:
                     stats["other_6"] += 1
-                    # 픽뚫 시에는 120 카운터 유지됨
                     stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 상시 획득 (픽뚫)")
                 continue
 

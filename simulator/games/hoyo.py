@@ -4,8 +4,108 @@ from ._base import Game
 # 기본확률 0.6%
 # 74회부터 확률 증가
 # 90회 천장
-# 현재 crumbs (환급 찌꺼기) 및 4성 확률 관련 내용은 붕괴 스타레일 기준임
 class HoyoverseGames(Game):
+    def __init__(self, game_name, rate_4):
+        super().__init__(game_name)
+        self.rate_4 = rate_4
+        
+    def get_crumbs(self, rarity: int, is_fulldol: bool, **kwargs) -> int:
+        """
+        뽑기 부스러기 반환기
+        각 클래스에서 재정의
+        """
+        self.is_new = kwargs.get("is_new", False)
+        return 0
+    
+    def run_simulation(self, target_rank):
+        # 6보다 큰 타겟 돌파가 들어오면 6돌로 강제 고정
+        if target_rank > 6:
+            target_rank = 6
+            
+        target_copies = target_rank + 1
+        stats = {"game": self.game_name,
+                 "total_pulls": 0,
+                 "pickup_5": 0,
+                 "other_5": 0,
+                 "4_star": 0,
+                 "weapon_3": 0,
+                 "crumbs": 0,
+                 "log":[]}
+        
+        stack_5 = 0
+        stack_4 = 0
+        char_up_4 = 0
+        guaranteed = False
+        
+        while stats["pickup_5"] < target_copies:
+            stats["total_pulls"] += 1
+            stack_5 += 1
+            stack_4 += 1
+            
+            # 5성 확률 계산
+            rate_5 = 0.006
+            if stack_5 >= 74:
+                rate_5 = 0.006 + (stack_5 - 73) * 0.06
+            
+            # 5성 획득 판정
+            if stack_5 == 90 or random.random() < rate_5:
+                stack_5 = 0
+                is_pickup = False
+                
+                if guaranteed:
+                    is_pickup = True
+                    guaranteed = False
+                else:
+                    if random.choice([True, False]):
+                        is_pickup = True
+                    else:
+                        guaranteed = True
+                
+                if is_pickup:
+                    stats["pickup_5"] += 1
+                    if int(stats["pickup_5"]) == 1:
+                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (현재 명함)")
+                    else:
+                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (현재 {int(stats['pickup_5'])}번 획득: {int(stats['pickup_5'])-1}돌)")
+                else:
+                    stats["other_5"] += 1
+                    stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 상시 획득 (픽뚫)")
+                
+                stats["crumbs"] += self.get_crumbs(5, is_pickup, is_new=True if is_pickup and stats["pickup_5"] == 1 else False)
+                
+                continue
+            
+            # 4성 획득 판정 (10회 천장)
+            # 5.1% 확률. 10회차에 확정.
+            rate_4 = 0.051
+            if stack_4 >= 10 or random.random() < rate_4:
+                is_target_4 = random.choice([True, False])
+                stats["4_star"] += 1
+                stack_4 = 0
+                if is_target_4:
+                    char_up_4 += 1
+                # TODO 이 부분 수정 - 확률업4성 / 비대상4성 is_new 선언 분리
+                stats["crumbs"] += self.get_crumbs(4, char_up_4>=8, is_new=False)
+                continue
+            # 나머지는 3성 무기 - crumbs 지급은 없음 (월간 5개 교환하게 해주는 재료는 여기서는 고려하지 않음)
+            stats["weapon_3"] += 1
+                
+        return stats
+
+class GenshinImpact(HoyoverseGames):
+    def __init__(self, game_name):
+        super().__init__(game_name, rate_4=0.051)
+
+class HonkaiStarRail(HoyoverseGames):
+    def __init__(self, game_name):
+        super().__init__(game_name, rate_4=0.051)
+
+class ZenlessZoneZero(HoyoverseGames):
+    def __init__(self, game_name):
+        super().__init__(game_name, rate_4=0.094)
+
+# 현재 crumbs (환급 찌꺼기) 및 4성 확률 관련 내용은 붕괴 스타레일 기준임
+class HoyoverseGames_original(Game):
     def run_simulation(self, target_rank):
         # 6보다 큰 타겟 돌파가 들어오면 6돌로 강제 고정
         if target_rank > 6:

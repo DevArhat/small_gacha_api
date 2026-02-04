@@ -20,7 +20,8 @@ class Endfield(Game):
                  "pickup_6": 0,
                  "other_6": 0, 
                  "5_star": 0,
-                 "4_star": 0, 
+                 "4_star": 0,
+                 "weapon_ticket": 0,
                  "log": []}
         
         stacks = 0
@@ -29,27 +30,24 @@ class Endfield(Game):
         used_120_guarantee = False 
         
         while stats["pickup_6"] < target_copies:
-            stats["total_pulls"] += 1
-            stacks += 1
-            guarantee_120_counter += 1
-            guarantee_240_counter += 1
-            rnd = random.random()
             
             # 긴급모집
             # 30회 뽑기 시 10회 무료,
             # 다른 모든 스택과 무관하므로 긴급모집 로직 종료 후 continue하지 않음
             # 단, 긴급모집 후 대상 copy 수가 만족되었을 경우 메인 while문을 탈출
-            if stacks == 30:
+            if stats["total_pulls"] == 30:
                 # 긴급모집 10회 중 5성 1회 확정
                 emergency_5star = False
                 
                 for i in range(10):
-                    if rnd < 0.008:
+                    # random을 새로 만들어주지 않았더니 메인 루프에서 만든 랜덤 그대로 열번 돌아감...
+                    emergency_rnd = random.random()
+                    
+                    if emergency_rnd < 0.008:
                         if random.choice([True, False]):
                             stats["pickup_6"] += 1
-                            # 픽업 획득 시 120 카운터 초기화
-                            guarantee_120_counter = 0
-                            used_120_guarantee = True # 1회용
+                            # 외부 스택과 완전 무관함
+                            # 픽업 획득 시에도 120회 카운터를 비롯한 스택이 초기화되지 않음
                     
                             if int(stats["pickup_6"]) == 1:
                                 stats["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 (현재 명함)")
@@ -59,20 +57,29 @@ class Endfield(Game):
                         else:
                             stats["other_6"] += 1
                             stats["log"].append(f"[긴급 {i+1}] 6★ 상시 획득 (픽뚫)")
-                        continue
                     
-                    if rnd < 0.08:
+                    
+                    elif emergency_rnd < 0.08:
                         stats["5_star"] += 1
                         emergency_5star = True
+                    
+                    else:
+                        if i == 9 and not emergency_5star:
+                            stats["5_star"] += 1
+                        else:
+                            stats["4_star"] += 1
                 
-                if not emergency_5star:
-                    stats["5_star"] += 1
     
                 if stats["pickup_6"] >= target_copies:
                     break
-                
-
             
+                        
+            stats["total_pulls"] += 1
+            stacks += 1
+            guarantee_120_counter += 1
+            guarantee_240_counter += 1
+            rnd = random.random()
+                             
             # 240회 보너스 (돌파권) 체크
             if guarantee_240_counter == 240:
                 stats["pickup_6"] += 1
@@ -119,5 +126,7 @@ class Endfield(Game):
             # 4성 (기본 91.2%, 암튼 여기까지 왔으면 4성)
             stats["4_star"] += 1
             continue
+        
+        stats["weapon_ticket"] = (stats["pickup_6"] + stats["other_6"]) * 2000 + stats["5_star"] * 200 + stats["4_star"] * 20
                 
         return stats

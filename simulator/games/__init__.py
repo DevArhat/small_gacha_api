@@ -7,6 +7,7 @@ from .endfield import Endfield
 GAMES_CONFIG = {
     "원신": (HoyoverseGames, ["gen", "genshin", "genshinimpact"]),
     "붕괴: 스타레일": (HoyoverseGames, ["hsr", "honkaisr", "honkaistarrail"]),
+    "젠레스 존 제로": (HoyoverseGames, ["zen", "zzz", "zenless", "zenzero"]),
     "명조": (WutheringWaves, ["wuwa", "wutheringwaves"]),
     "명일방주": (Arknights, ["ark", "arknights"]),
     "엔드필드": (Endfield, ["end", "endfield"]),

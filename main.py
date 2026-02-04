@@ -43,3 +43,6 @@ def simulate_gacha_get(game: str, target_pulls: int):
 def simulate_gacha(gacha_request: Gacha):
     result = gacha.simulate(gacha_request.game, gacha_request.target_pulls)
     return result
+
+if __name__ == "__main__":
+    uvicorn.run(app)

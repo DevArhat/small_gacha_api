@@ -4,6 +4,7 @@ from ._base import Game
 # 기본확률 0.6%
 # 74회부터 확률 증가
 # 90회 천장
+# 현재 crumbs (환급 찌꺼기) 및 4성 확률 관련 내용은 붕괴 스타레일 기준임
 class HoyoverseGames(Game):
     def run_simulation(self, target_rank):
         # 6보다 큰 타겟 돌파가 들어오면 6돌로 강제 고정
@@ -16,11 +17,13 @@ class HoyoverseGames(Game):
                  "pickup_5": 0,
                  "other_5": 0,
                  "4_star": 0,
-                 "weapon": 0,
+                 "weapon_3": 0,
+                 "crumbs": 0,
                  "log":[]}
         
         stack_5 = 0
         stack_4 = 0
+        char_up_4 = 0 # 4성 확률업 캐릭터 풀돌한 다음부터는 부스러기 20개 주는 식으로 계산
         guaranteed = False
         
         while stats["pickup_5"] < target_copies:
@@ -36,13 +39,14 @@ class HoyoverseGames(Game):
             # 5성 획득 판정
             if stack_5 == 90 or random.random() < rate_5:
                 stack_5 = 0
+                stats["crumbs"] += 40
                 is_pickup = False
                 
                 if guaranteed:
                     is_pickup = True
                     guaranteed = False
                 else:
-                    if random.random() < 0.5:
+                    if random.choice([True, False]):
                         is_pickup = True
                     else:
                         guaranteed = True
@@ -66,7 +70,7 @@ class HoyoverseGames(Game):
                 stack_4 = 0
                 continue
             # 나머지는 그냥 '무기'로 처리 (나중에 개선)
-            stats["weapon"] += 1
+            stats["weapon_3"] += 1
                 
         return stats
     

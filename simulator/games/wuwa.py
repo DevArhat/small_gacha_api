@@ -16,11 +16,13 @@ class WutheringWaves(Game):
                  "pickup_5": 0,
                  "other_5": 0,
                  "4_star": 0,
-                 "weapon": 0,
+                 "weapon_3": 0,
+                 "crumbs": 0,
                  "log":[]}
         
         stack_5 = 0
         stack_4 = 0
+        char_up_4 = 0 # 4성 확률업 캐릭터... 실제 캐릭터 목록을 다 넣을건 아니니까 4성 확업캐를 풀돌한 다음부터는 부스러기 8개 주는 식으로 계산
         guaranteed = False
         
         while stats["pickup_5"] < target_copies:
@@ -34,12 +36,13 @@ class WutheringWaves(Game):
             
             if stack_5 == 80 or random.random() < rate_5:
                 stack_5 = 0
+                stats["crumbs"] += 15
                 is_pickup = False
                 if guaranteed:
                     is_pickup = True
                     guaranteed = False
                 else:
-                    if random.random() < 0.5:
+                    if random.choice([True, False]):
                         is_pickup = True
                     else:
                         guaranteed = True
@@ -58,10 +61,15 @@ class WutheringWaves(Game):
             # 4성: 6.0% 확률, 10회차 확정
             if stack_4 >= 10 or random.random() < 0.06:
                 stats["4_star"] += 1
+                stats["crumbs"] += 3
                 stack_4 = 0
+                if random.choice([True, False]):
+                    char_up_4 += 1
+                    if char_up_4 >= 8:
+                        stats["crumbs"] += 5 # 4성 확업캐 풀돌 후부터는 조각 8개
                 continue
             
-            # 나머지는 그냥 '무기'로 처리 (나중에 개선)
-            stats["weapon"] += 1
+            # 나머지는 3성 무기
+            stats["weapon_3"] += 1
                 
         return stats

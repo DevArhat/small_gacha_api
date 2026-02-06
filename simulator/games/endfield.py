@@ -40,7 +40,7 @@ class Endfield(Game):
                 emergency_5star = False
                 
                 for i in range(10):
-                    # random을 새로 만들어주지 않았더니 메인 루프에서 만든 랜덤 그대로 열번 돌아감...
+                    # random을 새로 만들어주지 않았더니 메인 루프에서 만든 랜덤 숫자 그대로 열번 돌아가서 같은 결과로만 복사됨...
                     emergency_rnd = random.random()
                     
                     if emergency_rnd < 0.008:
@@ -50,9 +50,9 @@ class Endfield(Game):
                             # 픽업 획득 시에도 120회 카운터를 비롯한 스택이 초기화되지 않음
                     
                             if int(stats["pickup_6"]) == 1:
-                                stats["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 (현재 명함)")
+                                stats["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 (명함)")
                             else:
-                                stats["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 (현재 {int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
+                                stats["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 ({int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
                     
                         else:
                             stats["other_6"] += 1
@@ -84,7 +84,7 @@ class Endfield(Game):
             if guarantee_240_counter == 240:
                 stats["pickup_6"] += 1
                 guarantee_240_counter = 0
-                stats["log"].append(f"[Pull {stats['total_pulls']}] 240뽑 돌파권 획득 (현재 {int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
+                stats["log"].append(f"[Pull {stats['total_pulls']}] 240뽑 돌파권 획득 ({int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
                 if stats["pickup_6"] >= target_copies:
                     break
 
@@ -111,9 +111,9 @@ class Endfield(Game):
                     guarantee_120_counter = 0
                     used_120_guarantee = True # 1회용
                     if int(stats["pickup_6"]) == 1:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 픽업 획득 (현재 명함)")
+                        stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 픽업 획득 (명함)")
                     else:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 픽업 획득 (현재 {int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
+                        stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 픽업 획득 ({int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
                 else:
                     stats["other_6"] += 1
                     stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 상시 획득 (픽뚫)")

@@ -3,14 +3,14 @@ import random
 
 # 5성 관련 확률 정리
 # 기본확률 0.6%
-# 74회부터 확률 증가 - 유저 추정치?
+# 74회부터 확률 증가 - 유저 추정치
 # 90회 천장
 # 반천 50:50
 # 별빛 포착: 반천 픽뚫을 3번 당하면 다음 반천을 확천으로 바꿔주는 시스템이라고 함....
 # 확정적으로 확률공지가 나온 시스템이 아니라서 좀더 찾아봐야될듯
 # 지금까지 커뮤니티에서 분석된 내용:
 # 반천장 5성 캐릭터 뽑기에 진입하는 순간 기준,
-# 0스택 0.018%, 1스택 5%, 2스택 10%, 3스택 확정 (1/2스택일 때의 확률 불명)
+# 0스택 0.018%, 1스택 5%, 2스택 10%, 3스택 50% 추가 (1/2스택일 때의 확률 불명, 3스택일 땐 50+50 해서 100%)
 # 확천이 아닐 때 픽업 캐릭터를 획득하면 1스택 감소 (0 미만으로 감소하지 않음)
 # 픽뚫이 나면 1스택 증가
 
@@ -95,9 +95,9 @@ class GenshinImpact(Game):
                         if is_pickup:
                             stats["pickup_5"] += 1
                             if int(stats["pickup_5"]) == 1:
-                                stats["log"].append(f"[Pull {stats['total_pulls']}] 별빛 포착! 5★ 픽업 획득 (현재 명함)")
+                                stats["log"].append(f"[Pull {stats['total_pulls']}] 별빛 포착! 5★ 픽업 획득 (명함)")
                             else:
-                                stats["log"].append(f"[Pull {stats['total_pulls']}] 별빛 포착! 5★ 픽업 획득 (현재 {int(stats['pickup_5'])}번 획득: {int(stats['pickup_5'])-1}돌)")
+                                stats["log"].append(f"[Pull {stats['total_pulls']}] 별빛 포착! 5★ 픽업 획득 ({int(stats['pickup_5'])}번 획득: {int(stats['pickup_5'])-1}돌)")
                                 stats["crumbs"] += 10
                         else:
                             stats["other_5"] += 1
@@ -109,9 +109,9 @@ class GenshinImpact(Game):
                 if is_pickup:
                     stats["pickup_5"] += 1
                     if int(stats["pickup_5"]) == 1:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (현재 명함)")
+                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (명함)")
                     else:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (현재 {int(stats['pickup_5'])}번 획득: {int(stats['pickup_5'])-1}돌)")
+                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 ({int(stats['pickup_5'])}번 획득: {int(stats['pickup_5'])-1}돌)")
                         stats["crumbs"] += 10
                 else:
                     stats["other_5"] += 1
@@ -159,6 +159,9 @@ def minus_stack(radiance_stack) -> int:
     else:
         return radiance_stack - 1
 
+# 종합 픽업 확률이 55% 쯤 나와야되는데
+# 시뮬레이션 돌려보니까 56% 미만이 거의 안나옴..
+# 좀더 세부적인 로직이 밝혀지면 고쳐봐야될듯
 def handle_radiance(radiance_stack: int) -> tuple[bool, int]:
     """
     입력된 radiance stack에 따라 별빛포착 랜덤발동 성공 여부와 새로운 radiance stack을 반환하는 함수

@@ -81,9 +81,9 @@ class HonkaiStarRail(Game):
                 if is_pickup:
                     stats["pickup_5"] += 1
                     if int(stats["pickup_5"]) == 1:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (현재 명함)")
+                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (명함)")
                     else:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (현재 {int(stats['pickup_5'])}번 획득: {int(stats['pickup_5'])-1}돌)")
+                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 ({int(stats['pickup_5'])}번 획득: {int(stats['pickup_5'])-1}돌)")
                         stats["crumbs"] += 40
                 else:
                     stats["other_5"] += 1

@@ -34,7 +34,7 @@ class Arknights(Game):
             if stacks_to_token >= 300:
                 stats["exchange_token"] += 1
                 stacks_to_token -= 300
-                stats["log"].append(f"[Pull {stats['total_pulls']}] 풀천장! (현재 {int(stats['pickup_6']) + int(stats['exchange_token'])}회 획득: {int(stats['pickup_6']) + int(stats['exchange_token']) - 1}돌)")
+                stats["log"].append(f"[Pull {stats['total_pulls']}] 풀천장! ({int(stats['pickup_6']) + int(stats['exchange_token'])}회 획득: {int(stats['pickup_6']) + int(stats['exchange_token']) - 1}돌)")
                 if stats["pickup_6"] >= target_copies:
                     break
             
@@ -48,7 +48,7 @@ class Arknights(Game):
                 # 한정 픽업 확률 35% (나머지 65%는 통상 또는 다른 픽업)
                 if random.random() < 0.35:
                     stats["pickup_6"] += 1
-                    stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 한정 픽업 획득 (현재 {int(stats['pickup_6']) + int(stats['exchange_token'])}회 획득: {int(stats['pickup_6']) + int(stats['exchange_token']) - 1}돌)")
+                    stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 한정 픽업 획득 ({int(stats['pickup_6']) + int(stats['exchange_token'])}회 획득: {int(stats['pickup_6']) + int(stats['exchange_token']) - 1}돌)")
                 else:
                     stats["other_6"] += 1
                     stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 상시/기타 픽업 획득")
@@ -58,7 +58,9 @@ class Arknights(Game):
             rnd = random.random()
             if rnd < 0.08:
                 stats["5_star"] += 1
+                continue
             elif rnd < 0.08 + 0.50:
                 stats["4_star"] += 1
+                continue
                 
         return stats

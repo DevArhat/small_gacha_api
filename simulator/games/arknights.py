@@ -30,11 +30,13 @@ class Arknights(Game):
             stacks += 1
             stacks_to_token += 1
             
+            curr_random = random.random()
+            
             # 정가 교환 체크 (300회)
             if stacks_to_token >= 300:
                 stats["exchange_token"] += 1
                 stacks_to_token -= 300
-                stats["log"].append(f"[Pull {stats['total_pulls']}] 풀천장! (현재 {int(stats['pickup_6']) + int(stats['exchange_token'])}회 획득: {int(stats['pickup_6']) + int(stats['exchange_token']) - 1}돌)")
+                stats["log"].append(f"[Pull {stats['total_pulls']}] 풀천장! ({int(stats['pickup_6']) + int(stats['exchange_token'])}회 획득: {int(stats['pickup_6']) + int(stats['exchange_token']) - 1}돌)")
                 if stats["pickup_6"] >= target_copies:
                     break
             
@@ -43,22 +45,24 @@ class Arknights(Game):
                 rate_6 = 0.02 + (stacks - 50) * 0.02
             
             # 6성 획득
-            if random.random() < rate_6:
+            if curr_random < rate_6:
                 stacks = 0
                 # 한정 픽업 확률 35% (나머지 65%는 통상 또는 다른 픽업)
                 if random.random() < 0.35:
                     stats["pickup_6"] += 1
-                    stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 한정 픽업 획득 (현재 {int(stats['pickup_6']) + int(stats['exchange_token'])}회 획득: {int(stats['pickup_6']) + int(stats['exchange_token']) - 1}돌)")
+                    stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 한정 픽업 획득 ({int(stats['pickup_6']) + int(stats['exchange_token'])}회 획득: {int(stats['pickup_6']) + int(stats['exchange_token']) - 1}돌)")
                 else:
                     stats["other_6"] += 1
                     stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 상시/기타 픽업 획득")
                 continue
             
             # 하위 등급 (5성: 8%, 4성: 50%) - 10회 확정은 나중에 생각해보자
-            rnd = random.random()
-            if rnd < 0.08:
+            
+            if curr_random < 0.08:
                 stats["5_star"] += 1
-            elif rnd < 0.08 + 0.50:
+                continue
+            elif curr_random < 0.08 + 0.50:
                 stats["4_star"] += 1
+                continue
                 
         return stats

@@ -30,6 +30,8 @@ class Arknights(Game):
             stacks += 1
             stacks_to_token += 1
             
+            curr_random = random.random()
+            
             # 정가 교환 체크 (300회)
             if stacks_to_token >= 300:
                 stats["exchange_token"] += 1
@@ -43,7 +45,7 @@ class Arknights(Game):
                 rate_6 = 0.02 + (stacks - 50) * 0.02
             
             # 6성 획득
-            if random.random() < rate_6:
+            if curr_random < rate_6:
                 stacks = 0
                 # 한정 픽업 확률 35% (나머지 65%는 통상 또는 다른 픽업)
                 if random.random() < 0.35:
@@ -55,11 +57,11 @@ class Arknights(Game):
                 continue
             
             # 하위 등급 (5성: 8%, 4성: 50%) - 10회 확정은 나중에 생각해보자
-            rnd = random.random()
-            if rnd < 0.08:
+            
+            if curr_random < 0.08:
                 stats["5_star"] += 1
                 continue
-            elif rnd < 0.08 + 0.50:
+            elif curr_random < 0.08 + 0.50:
                 stats["4_star"] += 1
                 continue
                 

@@ -64,7 +64,7 @@ class HonkaiStarRail(Game):
                 rate_5 = 0.006 + (stack_5 - 73) * 0.06
             
             # 5성 획득 판정
-            if stack_5 == 90 or random.random() < rate_5:
+            if stack_5 == 90 or curr_random < rate_5:
                 stack_5 = 0
                 stats["crumbs"] += 40
                 is_pickup = False
@@ -100,7 +100,7 @@ class HonkaiStarRail(Game):
             # 4성 획득 중에서 25% 확률로는 광추가 떠서 스타라이트가 8개만 나왔다고 시뮬레이트
             # 더 좋은 예측 모델이 있으면 스타라이트 관련된 부분은 수정 필요함
             rate_4 = 0.051
-            if stack_4 >= 10 or random.random() < rate_4:
+            if stack_4 >= 10 or curr_random < rate_4:
                 stats["4_star"] += 1
                 stats["crumbs"] += 20
                 stack_4 = 0

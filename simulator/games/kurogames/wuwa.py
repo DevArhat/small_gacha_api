@@ -1,5 +1,5 @@
 import random
-from ._base import Game
+from .._base import Game
 
 # 기본확률 0.8%
 # 66회부터 확률 증가

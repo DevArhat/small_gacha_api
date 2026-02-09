@@ -1,5 +1,5 @@
 import random
-from ._base import Game
+from .._base import Game
 
 # 아니 뽑기 구조가 왤케 어려움?
 # 6성 반천을 치면 30% 픽뚫 / 35% 픽업대상 / 35% 한정

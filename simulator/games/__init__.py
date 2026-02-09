@@ -1,9 +1,9 @@
-from .hoyoverse.genshin import GenshinImpact
-from .hoyoverse.starrail import HonkaiStarRail
-from .hoyoverse.zenless import ZenlessZoneZero
-from .kurogames.wuwa import WutheringWaves
-from .hypergryph.arknights import Arknights
-from .hypergryph.endfield import Endfield
+from simulator.games.hoyoverse.genshin import GenshinImpact
+from simulator.games.hoyoverse.starrail import HonkaiStarRail
+from simulator.games.hoyoverse.zenless import ZenlessZoneZero
+from simulator.games.kurogames.wuwa import WutheringWaves
+from simulator.games.hypergryph.arknights import Arknights
+from simulator.games.hypergryph.endfield import Endfield
 
 
 GAMES_CONFIG = {

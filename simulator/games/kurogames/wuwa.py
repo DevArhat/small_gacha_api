@@ -1,9 +1,10 @@
 import random
-from .._base import Game
+from simulator.games._base import Game
 
 # 기본확률 0.8%
 # 66회부터 확률 증가
 # 80회 천장
+# 대충 아래 내용이 맞다고 치고 로직 재구성
 # 3줄 요약
 
 # (1) 5성 확률은 1.848%라서 평균적으로 55연차에 5성 1개 먹음
@@ -44,11 +45,17 @@ class WutheringWaves(Game):
             stack_5 += 1
             stack_4 += 1
             
-            rate_5 = 0.008
-            if stack_5 >= 66:
-                rate_5 = 0.008 + (stack_5 - 65) * 0.066
+            curr_random = random.random()
             
-            if stack_5 == 80 or random.random() < rate_5:
+            rate_5 = 0.008
+            if 66 <= stack_5 < 71:
+                rate_5 = 0.008 + (stack_5 - 65) * 0.04
+            elif 71 <= stack_5 < 76:
+                rate_5 = 0.208 + (stack_5 - 70) * 0.08
+            elif 76 <= stack_5 < 80:
+                rate_5 = 0.608 + (stack_5 - 75) * 0.1
+            
+            if stack_5 == 80 or curr_random < rate_5:
                 stack_5 = 0
                 stats["crumbs"] += 15
                 is_pickup = False
@@ -73,7 +80,7 @@ class WutheringWaves(Game):
                 continue
             
             # 4성: 6.0% 확률, 10회차 확정
-            if stack_4 >= 10 or random.random() < 0.06:
+            if stack_4 >= 10 or curr_random < 0.06:
                 stats["4_star"] += 1
                 stats["crumbs"] += 3
                 stack_4 = 0

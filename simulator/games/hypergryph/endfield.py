@@ -1,5 +1,5 @@
 import random
-from .._base import Game
+from simulator.games._base import Game
 
 # 기본확률 0.8%
 # 65회부터 확률 증가
@@ -25,6 +25,7 @@ class Endfield(Game):
                  "log": []}
         
         stacks = 0
+        stacks_5 = 0
         guarantee_120_counter = 0
         guarantee_240_counter = 0
         used_120_guarantee = False 
@@ -76,6 +77,7 @@ class Endfield(Game):
                         
             stats["total_pulls"] += 1
             stacks += 1
+            stacks_5 += 1
             guarantee_120_counter += 1
             guarantee_240_counter += 1
             rnd = random.random()
@@ -104,7 +106,7 @@ class Endfield(Game):
             
             if stacks == 80 or rnd < rate_6:
                 stacks = 0
-                # 50/50 확률
+                stacks_5 = 0
                 if random.choice([True, False]):
                     stats["pickup_6"] += 1
                     # 픽업 획득 시 120 카운터 초기화
@@ -120,8 +122,9 @@ class Endfield(Game):
                 continue
 
             # 5성 (8%)
-            if rnd < 0.08:
+            if rnd < 0.08 or stacks_5 == 10:
                 stats["5_star"] += 1
+                stacks_5 = 0
                 continue
             # 4성 (기본 91.2%, 암튼 여기까지 왔으면 4성)
             stats["4_star"] += 1

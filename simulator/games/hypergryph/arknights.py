@@ -1,5 +1,5 @@
 import random
-from .._base import Game
+from simulator.games._base import Game
 
 # 아니 뽑기 구조가 왤케 어려움?
 # 6성 반천을 치면 30% 픽뚫 / 35% 픽업대상 / 35% 한정
@@ -56,7 +56,7 @@ class Arknights(Game):
                     stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 상시/기타 픽업 획득")
                 continue
             
-            # 하위 등급 (5성: 8%, 4성: 50%) - 10회 확정은 나중에 생각해보자
+            # TODO 5성, 4성, 3성 관련 (명일방주는 엔필과 다르게 3성 캐릭이 있음...)
             
             if curr_random < 0.08:
                 stats["5_star"] += 1

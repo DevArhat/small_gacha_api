@@ -1,4 +1,4 @@
-from .._base import Game
+from simulator.games._base import Game
 import random
 
 # 5성 관련 확률 정리

@@ -1,4 +1,4 @@
-from .._base import Game
+from simulator.games._base import Game
 import random
 
 # 5성 관련 확률 정리
@@ -154,10 +154,11 @@ def minus_stack(radiance_stack) -> int:
     Returns:
         new_stack (_int_): 뺄셈 진행 후 별빛포착 스택 (최소치 0)
     """
-    if radiance_stack <= 0:
-        return radiance_stack
-    else:
-        return radiance_stack - 1
+    # if radiance_stack <= 0:
+    #     return radiance_stack
+    # else:
+    #     return radiance_stack - 1
+    return max(0, radiance_stack - 1)
 
 # 종합 픽업 확률이 55% 쯤 나와야되는데
 # 시뮬레이션 돌려보니까 56% 미만이 거의 안나옴..

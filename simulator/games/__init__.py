@@ -11,7 +11,7 @@ GAMES_CONFIG = {
     "붕괴: 스타레일": (HonkaiStarRail, ["hsr", "honkaisr", "honkaistarrail"]),
     "젠레스 존 제로": (ZenlessZoneZero, ["zzz", "zen", "zenless", "zenzero"]),
     "명조": (WutheringWaves, ["wuwa", "wutheringwaves"]),
-    "명일방주": (Arknights, ["ark", "arknights"]),
+    # "명일방주": (Arknights, ["ark", "arknights"]),
     "엔드필드": (Endfield, ["end", "endfield"]),
 }
 
@@ -27,6 +27,6 @@ def get_game_strategy(input_name: str):
         game_class, display_name = ALIAS_MAP[key]
         return game_class(game_name=display_name)
     
-    default_class, default_name = ALIAS_MAP["gen"]
+    default_class, default_name = ALIAS_MAP["hsr"]
     return default_class(game_name=default_name)
     

@@ -19,7 +19,7 @@ def read_root():
 @app.get("/list")
 def get_games_list_json():
     games_data = []
-    for display_name, (game_class, aliases) in simulator.games.GAMES_CONFIG.items():
+    for display_name, (_, aliases) in simulator.games.GAMES_CONFIG.items():
         games_data.append({
             "name": display_name,
             "aliases": aliases,

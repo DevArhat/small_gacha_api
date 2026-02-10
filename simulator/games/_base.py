@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 class Game(ABC):
-    def __init__(self, game_name: str = "원신"):
+    def __init__(self, game_name: str = "붕괴: 스타레일"):
         self.game_name = game_name
     
     @abstractmethod

@@ -17,11 +17,14 @@ class Endfield(Game):
         target_copies = target_rank + 1
         stats = {"game": self.game_name,
                  "total_pulls": 0,
+                 "total_cost": 0,
+                 "net_cost": 0,
                  "pickup_6": 0,
                  "other_6": 0, 
                  "5_star": 0,
                  "4_star": 0,
                  "weapon_ticket": 0,
+                 "pickup_log": [],
                  "log": []}
         
         stacks = 0

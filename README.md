@@ -1,6 +1,6 @@
 # small_gacha_api
 
-외환 유출 시뮬레이터
+### 외환 유출 시뮬레이터
 - - -
 get /simulate/{game}/{target_pulls}
 

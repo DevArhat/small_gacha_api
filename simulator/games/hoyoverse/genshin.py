@@ -51,7 +51,8 @@ class GenshinImpact(Game):
                  "4_star": 0,
                  "weapon_3": 0,
                  "crumbs": 0,
-                 "log":[]}
+                 "pickup_log": [],
+                 "log": []}
         
         stack_5 = 0
         stack_4 = 0

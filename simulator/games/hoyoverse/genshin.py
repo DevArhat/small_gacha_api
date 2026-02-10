@@ -1,6 +1,8 @@
 from simulator.games._base import Game
 import random
 
+from simulator.games.hoyoverse import arrange_stats
+
 # 5성 관련 확률 정리
 # 기본확률 0.6%
 # 74회부터 확률 증가 - 유저 추정치
@@ -39,20 +41,42 @@ import random
 
 class GenshinImpact(Game):
     def run_simulation(self, target_rank):
-        # 6보다 큰 타겟 돌파가 들어오면 6돌로 강제 고정
-        if target_rank > 6:
-            target_rank = 6
+        # 0보다 작거나 6보다 큰 타겟 돌파가 들어오면 0 or 6돌로 강제 고정
+        target_rank = max(0, min(target_rank, 6))
             
         target_copies = target_rank + 1
         stats = {"game": self.game_name,
-                 "total_pulls": 0,
-                 "pickup_5": 0,
-                 "other_5": 0,
-                 "4_star": 0,
-                 "weapon_3": 0,
-                 "crumbs": 0,
-                 "pickup_log": [],
-                 "log": []}
+                "total_pulls": 0,
+                "raw":{
+                    "pulls":0,
+                    "cost":0,
+                    },
+                "after_exchange":{
+                    "pulls":0,
+                    "cost":0,
+                    },
+                "trucks":{
+                    "raw": 0,
+                    "after_exchange": 0,
+                    "raw_cost": 0,
+                    "after_exchange_cost": 0,
+                    },
+                "pull_result":{
+                    "pickup_5": 0,
+                    "other_5": 0,
+                    "4_star": 0,
+                    "weapon_3": 0,
+                    },
+                "crumbs": {
+                    "total": 0,
+                    "tickets_changed": 0,
+                    "remaining": 0,
+                    },
+                "logs": {
+                    "log": [],
+                    "target": [] 
+                    }
+                }
         
         stack_5 = 0
         stack_4 = 0
@@ -66,8 +90,8 @@ class GenshinImpact(Game):
         # 해당 모델에 따르면, 스택은 0~3 범위에서 동작하지만 기본값은 1임
         capturing_radiance_stack = 1
         
-        while stats["pickup_5"] < target_copies:
-            stats["total_pulls"] += 1
+        while stats['pull_result']["pickup_5"] < target_copies:
+            stats['raw']['pulls'] += 1
             stack_5 += 1
             stack_4 += 1
             
@@ -94,30 +118,34 @@ class GenshinImpact(Game):
                         radiance_result = handle_radiance(capturing_radiance_stack)
                         is_pickup, capturing_radiance_stack = radiance_result
                         if is_pickup:
-                            stats["pickup_5"] += 1
-                            if int(stats["pickup_5"]) == 1:
-                                stats["log"].append(f"[Pull {stats['total_pulls']}] 별빛 포착! 5★ 픽업 획득 (명함)")
+                            stats['pull_result']["pickup_5"] += 1
+                            if int(stats['pull_result']["pickup_5"]) == 1:
+                                stats['logs']["log"].append(f"[Pull {stats['raw']['pulls']}] 별빛 포착! 5★ 픽업 획득 (명함)")
+                                stats['logs']['target'].append(f"{stats['raw']['pulls']}")
                             else:
-                                stats["log"].append(f"[Pull {stats['total_pulls']}] 별빛 포착! 5★ 픽업 획득 ({int(stats['pickup_5'])}번 획득: {int(stats['pickup_5'])-1}돌)")
-                                stats["crumbs"] += 10
+                                stats['logs']["log"].append(f"[Pull {stats['raw']['pulls']}] 별빛 포착! 5★ 픽업 획득 ({int(stats['pull_result']['pickup_5'])}번 획득: {int(stats['pull_result']['pickup_5'])-1}돌)")
+                                stats['logs']['target'].append(f"{stats['raw']['pulls']}")
+                                stats["crumbs"]['total'] += 10
                         else:
-                            stats["other_5"] += 1
-                            stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 상시 획득 (픽뚫)")
-                            stats["crumbs"] += 10
+                            stats['pull_result']["other_5"] += 1
+                            stats['logs']["log"].append(f"[Pull {stats['raw']['pulls']}] 5★ 상시 획득 (픽뚫)")
+                            stats["crumbs"]['total'] += 10
                             guaranteed = True
                         continue
                             
                 if is_pickup:
-                    stats["pickup_5"] += 1
-                    if int(stats["pickup_5"]) == 1:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (명함)")
+                    stats['pull_result']["pickup_5"] += 1
+                    if int(stats['pull_result']["pickup_5"]) == 1:
+                        stats['logs']["log"].append(f"[Pull {stats['raw']['pulls']}] 5★ 픽업 획득 (명함)")
+                        stats['logs']['target'].append(f"{stats['raw']['pulls']}")
                     else:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 ({int(stats['pickup_5'])}번 획득: {int(stats['pickup_5'])-1}돌)")
-                        stats["crumbs"] += 10
+                        stats['logs']["log"].append(f"[Pull {stats['raw']['pulls']}] 5★ 픽업 획득 ({int(stats['pull_result']['pickup_5'])}번 획득: {int(stats['pull_result']['pickup_5'])-1}돌)")
+                        stats['logs']['target'].append(f"{stats['raw']['pulls']}")
+                        stats["crumbs"]['total'] += 10
                 else:
-                    stats["other_5"] += 1
-                    stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 상시 획득 (픽뚫)")
-                    stats["crumbs"] += 10
+                    stats['pull_result']["other_5"] += 1
+                    stats['logs']["log"].append(f"[Pull {stats['raw']['pulls']}] 5★ 상시 획득 (픽뚫)")
+                    stats["crumbs"]['total'] += 10
                 continue
             
             # 4성 획득 판정 (10회 천장)
@@ -130,17 +158,18 @@ class GenshinImpact(Game):
             # 더 좋은 예측 모델이 있으면 스타라이트 관련된 부분은 수정 필요함
             rate_4 = 0.051
             if stack_4 >= 10 or curr_random < rate_4:
-                stats["4_star"] += 1
-                stats["crumbs"] += 5
+                stats["pull_result"]["4_star"] += 1
+                stats["crumbs"]['total'] += 5
                 stack_4 = 0
                 # 무기가 떴는지 캐릭터가 떴는지 판단하는 랜덤숫자는 메인 뽑기 확률과 별개
                 if random.random() < 0.25:
-                    stats["crumbs"] -= 3
+                    stats["crumbs"]['total'] -= 3
                 continue
             # 나머지는 3성 무기
-            stats["weapon_3"] += 1
+            stats["pull_result"]["weapon_3"] += 1
                 
-        return stats
+        return arrange_stats(stats, 5)
+
 
 def minus_stack(radiance_stack) -> int:
     """

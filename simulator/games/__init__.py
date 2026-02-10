@@ -12,7 +12,7 @@ GAMES_CONFIG = {
     "젠레스 존 제로": (ZenlessZoneZero, ["zzz", "zen", "zenless", "zenzero"]),
     "명조": (WutheringWaves, ["wuwa", "wutheringwaves"]),
     # "명일방주": (Arknights, ["ark", "arknights"]),
-    "엔드필드": (Endfield, ["end", "endfield"]),
+    # "엔드필드": (Endfield, ["end", "endfield"]),
 }
 
 ALIAS_MAP = {}

@@ -10,22 +10,42 @@ from simulator.games._base import Game
 # 4성 -> 무뽑재료 20
 class Endfield(Game):
     def run_simulation(self, target_rank):
-        # 명방은 풀돌이 5잠재라서 그 이상이 들어오면 강제로 5돌로 고정함
-        if target_rank > 5:
-            target_rank = 5
+        # 0보다 작거나 5보다 큰 타겟 돌파가 들어오면 0 or 5돌로 강제 고정
+        target_rank = max(0, min(target_rank, 5))
             
         target_copies = target_rank + 1
         stats = {"game": self.game_name,
-                 "total_pulls": 0,
-                 "total_cost": 0,
-                 "net_cost": 0,
-                 "pickup_6": 0,
-                 "other_6": 0, 
-                 "5_star": 0,
-                 "4_star": 0,
-                 "weapon_ticket": 0,
-                 "pickup_log": [],
-                 "log": []}
+                "total_pulls": 0,
+                "raw":{
+                    "pulls":0,
+                    "cost":0,
+                    },
+                "after_exchange":{
+                    "pulls":0,
+                    "cost":0,
+                    },
+                "trucks":{
+                    "raw": 0,
+                    "after_exchange": 0,
+                    "raw_cost": 0,
+                    "after_exchange_cost": 0,
+                    },
+                "pull_result":{
+                    "pickup_6": 0,
+                    "other_6": 0,
+                    "5_star": 0,
+                    "4_star": 0,
+                    },
+                "crumbs": {
+                    "total": 0,
+                    "tickets_changed": 0,
+                    "remaining": 0,
+                    },
+                "logs": {
+                    "log": [],
+                    "target": [] 
+                    }
+                }
         
         stacks = 0
         stacks_5 = 0

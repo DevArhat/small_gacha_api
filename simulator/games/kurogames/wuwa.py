@@ -1,9 +1,20 @@
 import random
 from simulator.games._base import Game
+from simulator.games.kurogames import arrange_stats
 
 # 기본확률 0.8%
 # 66회부터 확률 증가
 # 80회 천장
+# 4성 기본확률 6%, 4성천장(10회)있음, 4성확률업 반천/확천 있음
+
+# 산호 관련
+# 5성 1~7회차 획득: 15개
+# 5성 8~회차 획득: 40개
+# 5성 픽뚫일 경우 각 항목에 +30개 (풀돌픽뚫나면 70개임 ㄷㄷ)
+# 4성 1~7회차 획득: 3개
+# 4성 8~회차 획득: 8개
+# 4성 무기: 3개
+
 # 대충 아래 내용이 맞다고 치고 로직 재구성
 # 3줄 요약
 
@@ -21,27 +32,61 @@ from simulator.games._base import Game
 # 80뽑에 나올 확률은 없음 불가능함
 class WutheringWaves(Game):
     def run_simulation(self, target_rank):
-        # 6보다 큰 타겟 돌파가 들어오면 6돌로 강제 고정
-        if target_rank > 6:
-            target_rank = 6
+        # 0보다 작거나 6보다 큰 타겟 돌파가 들어오면 0 or 6돌로 강제 고정
+        target_rank = max(0, min(target_rank, 6))
             
         target_copies = target_rank + 1
         stats = {"game": self.game_name,
-                 "total_pulls": 0,
-                 "pickup_5": 0,
-                 "other_5": 0,
-                 "4_star": 0,
-                 "weapon_3": 0,
-                 "crumbs": 0,
-                 "log": []}
+                "total_pulls": 0,
+                "raw":{
+                    "pulls":0,
+                    "cost":0,
+                    },
+                "after_exchange":{
+                    "pulls":0,
+                    "cost":0,
+                    },
+                "trucks":{
+                    "raw": 0,
+                    "after_exchange": 0,
+                    "raw_cost": 0,
+                    "after_exchange_cost": 0,
+                    },
+                "pull_result":{
+                    "pickup_5": 0,
+                    "other_5": 0,
+                    "4_star": 0,
+                    "weapon_3": 0,
+                    },
+                "crumbs": {
+                    "total": 0,
+                    "tickets_changed": 0,
+                    "remaining": 0,
+                    },
+                "logs": {
+                    "log": [],
+                    "target": [] 
+                    }
+                }
         
         stack_5 = 0
         stack_4 = 0
-        char_up_4 = 0 # 4성 확률업 캐릭터... 실제 캐릭터 목록을 다 넣을건 아니니까 4성 확업캐를 풀돌한 다음부터는 부스러기 8개 주는 식으로 계산
+        crumbs_exchanged = 0
         guaranteed = False
+        guaranteed_4 = False
         
-        while stats["pickup_5"] < target_copies:
-            stats["total_pulls"] += 1
+        while stats["pull_result"]["pickup_5"] < target_copies:
+            
+            if stats['crumbs']['total'] >= 360 and crumbs_exchanged <2:
+                stats['pull_result']['pickup_5'] += 1
+                stats['crumbs']['total'] -= 360
+                crumbs_exchanged += 1
+                stats['logs']['log'].append(f"[Pull {stats['raw']['pulls']}] 산호{crumbs_exchanged} 교환 완료 ({int(stats['pull_result']['pickup_5'])}번 획득: {int(stats['pull_result']['pickup_5'])-1}돌)")
+                stats['logs']['target'].append(f"산호{crumbs_exchanged}")
+                if stats['pull_result']['pickup_5'] >= target_copies:
+                    break
+                
+            stats["raw"]["pulls"] += 1
             stack_5 += 1
             stack_4 += 1
             
@@ -57,7 +102,8 @@ class WutheringWaves(Game):
             
             if stack_5 == 80 or curr_random < rate_5:
                 stack_5 = 0
-                stats["crumbs"] += 15
+                stack_4 = 0
+                stats["crumbs"]["total"] += 15
                 is_pickup = False
                 if guaranteed:
                     is_pickup = True
@@ -69,28 +115,38 @@ class WutheringWaves(Game):
                         guaranteed = True
                 
                 if is_pickup:
-                    stats["pickup_5"] += 1
-                    if int(stats["pickup_5"]) == 1:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 (명함)")
+                    stats["pull_result"]["pickup_5"] += 1
+                    if int(stats["pull_result"]["pickup_5"]) == 1:
+                        stats["logs"]["log"].append(f"[Pull {stats["raw"]["pulls"]}] 5★ 픽업 획득 (명함)")
+                        stats["logs"]["target"].append(f"{stats["raw"]["pulls"]}")
                     else:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 픽업 획득 ({int(stats['pickup_5'])}번 획득: {int(stats['pickup_5'])-1}돌)")
+                        stats["logs"]["log"].append(f"[Pull {stats["raw"]["pulls"]}] 5★ 픽업 획득 ({int(stats['pull_result']['pickup_5'])}번 획득: {int(stats['pull_result']['pickup_5'])-1}돌)")
+                        stats["logs"]["target"].append(f"{stats["raw"]["pulls"]}")
                 else:
-                    stats["other_5"] += 1
-                    stats["log"].append(f"[Pull {stats['total_pulls']}] 5★ 상시 획득 (픽뚫)")
+                    stats['pull_result']["other_5"] += 1
+                    stats["crumbs"]["total"] += 30
+                    stats["logs"]["log"].append(f"[Pull {stats["raw"]["pulls"]}] 5★ 상시 획득 (픽뚫)")
                 continue
             
             # 4성: 6.0% 확률, 10회차 확정
+            # 그냥 호요버스겜쪽에 세팅한것처럼
+            # 4성캐 다 풀돌이라 치고 일단 8개 튀어나오고
+            # 25% 확률로 무기 떠서 3개만 나오고
+            # 대충 그렇게 구성
             if stack_4 >= 10 or curr_random < 0.06:
-                stats["4_star"] += 1
-                stats["crumbs"] += 3
+                stats["pull_result"]["4_star"] += 1
+                stats["crumbs"]["total"] += 8
                 stack_4 = 0
-                if random.choice([True, False]):
-                    char_up_4 += 1
-                    if char_up_4 >= 8:
-                        stats["crumbs"] += 5 # 4성 확업캐 풀돌 후부터는 조각 8개
+                if guaranteed_4 or random.choice([True, False]):
+                     guaranteed_4 = False
+                else:
+                    guaranteed_4 = True
+                    if random.choice([True, False]):
+                        stats["crumbs"]["total"] -= 5
+                    
                 continue
             
             # 나머지는 3성 무기
-            stats["weapon_3"] += 1
-                
-        return stats
+            stats['pull_result']["weapon_3"] += 1
+        
+        return arrange_stats(stats, 8)

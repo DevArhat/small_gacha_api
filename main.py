@@ -33,6 +33,11 @@ def get_games_list():
     values = [simulator.games.GAMES_CONFIG[key][1] for key in keys]
     return {"games": dict(zip(keys, values))}
 
+@app.get("/simulate")
+def simulate_gacha(game: str = 'hsr', target_rank: int = 0):
+    result = gacha.simulate(game, target_rank)
+    return result
+
 @app.get("/simulate/{game}/{target_rank}")
 def simulate_gacha_get(game: str, target_rank: int):
     result = gacha.simulate(game, target_rank)
@@ -40,7 +45,7 @@ def simulate_gacha_get(game: str, target_rank: int):
 
 
 @app.post("/simulate/")
-def simulate_gacha(gacha_request: Gacha):
+def simulate_gacha_post(gacha_request: Gacha):
     result = gacha.simulate(gacha_request.game, gacha_request.target_rank)
     return result
 

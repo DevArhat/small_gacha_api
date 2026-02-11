@@ -23,3 +23,6 @@ def end_arrange_stats(stats: dict) -> dict:
     stats['crumbs']['remaining'] = stats['crumbs']['total'] % CRUMBS_PER_WEAPON_PULL
 
     return stats
+
+def ark_arrange_stats(stats: dict) -> dict:
+    return stats

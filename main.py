@@ -9,7 +9,7 @@ gacha = GachaSimulator()
 
 class Gacha(BaseModel):
     game: str
-    target_pulls: int
+    target_rank: int
     
 
 @app.get("/")
@@ -33,16 +33,16 @@ def get_games_list():
     values = [simulator.games.GAMES_CONFIG[key][1] for key in keys]
     return {"games": dict(zip(keys, values))}
 
-@app.get("/simulate/{game}/{target_pulls}")
-def simulate_gacha_get(game: str, target_pulls: int):
-    result = gacha.simulate(game, target_pulls)
+@app.get("/simulate/{game}/{target_rank}")
+def simulate_gacha_get(game: str, target_rank: int):
+    result = gacha.simulate(game, target_rank)
     return result
 
 
 @app.post("/simulate/")
 def simulate_gacha(gacha_request: Gacha):
-    result = gacha.simulate(gacha_request.game, gacha_request.target_pulls)
+    result = gacha.simulate(gacha_request.game, gacha_request.target_rank)
     return result
 
 if __name__ == "__main__":
-    uvicorn.run(app)
+    uvicorn.run("main:app", reload=True)

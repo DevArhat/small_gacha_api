@@ -39,6 +39,7 @@ class HonkaiStarRail(Game):
             
         target_copies = target_rank + 1
         stats = {"game": self.game_name,
+                "target_rank": target_rank,                 
                 "total_pulls": 0,
                 "raw":{
                     "pulls":0,

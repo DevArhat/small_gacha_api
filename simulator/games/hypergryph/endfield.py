@@ -1,5 +1,6 @@
 import random
 from simulator.games._base import Game
+from simulator.games.hypergryph import end_arrange_stats
 
 # 기본확률 0.8%
 # 65회부터 확률 증가
@@ -15,6 +16,7 @@ class Endfield(Game):
             
         target_copies = target_rank + 1
         stats = {"game": self.game_name,
+                "target_rank": target_rank,
                 "total_pulls": 0,
                 "raw":{
                     "pulls":0,
@@ -53,13 +55,13 @@ class Endfield(Game):
         guarantee_240_counter = 0
         used_120_guarantee = False 
         
-        while stats["pickup_6"] < target_copies:
+        while stats["pull_result"]["pickup_6"] < target_copies:
             
             # 긴급모집
             # 30회 뽑기 시 10회 무료,
             # 다른 모든 스택과 무관하므로 긴급모집 로직 종료 후 continue하지 않음
             # 단, 긴급모집 후 대상 copy 수가 만족되었을 경우 메인 while문을 탈출
-            if stats["total_pulls"] == 30:
+            if stats["raw"]["pulls"] == 30:
                 # 긴급모집 10회 중 5성 1회 확정
                 emergency_5star = False
                 
@@ -69,36 +71,37 @@ class Endfield(Game):
                     
                     if emergency_rnd < 0.008:
                         if random.choice([True, False]):
-                            stats["pickup_6"] += 1
+                            stats["pull_result"]["pickup_6"] += 1
                             # 외부 스택과 완전 무관함
                             # 픽업 획득 시에도 120회 카운터를 비롯한 스택이 초기화되지 않음
                     
-                            if int(stats["pickup_6"]) == 1:
-                                stats["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 (명함)")
+                            if int(stats["pull_result"]["pickup_6"]) == 1:
+                                stats["logs"]["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 (명함)")
+                                stats["logs"]["target"].append(f"E{stats['raw']['pulls']}")
                             else:
-                                stats["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 ({int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
-                    
+                                stats["logs"]["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 ({int(stats['pull_result']['pickup_6'])}번 획득: {int(stats['pull_result']['pickup_6'])-1}돌)")
+                                stats["logs"]["target"].append(f"E{stats['raw']['pulls']}")
                         else:
-                            stats["other_6"] += 1
-                            stats["log"].append(f"[긴급 {i+1}] 6★ 상시 획득 (픽뚫)")
+                            stats["pull_result"]["other_6"] += 1
+                            stats["logs"]["log"].append(f"[긴급 {i+1}] 6★ 상시 획득 (픽뚫)")
                     
                     
                     elif emergency_rnd < 0.08:
-                        stats["5_star"] += 1
+                        stats["pull_result"]["5_star"] += 1
                         emergency_5star = True
                     
                     else:
                         if i == 9 and not emergency_5star:
-                            stats["5_star"] += 1
+                            stats["pull_result"]["5_star"] += 1
                         else:
-                            stats["4_star"] += 1
+                            stats["pull_result"]["4_star"] += 1
                 
     
-                if stats["pickup_6"] >= target_copies:
+                if stats["pull_result"]["pickup_6"] >= target_copies:
                     break
             
                         
-            stats["total_pulls"] += 1
+            stats["raw"]["pulls"] += 1
             stacks += 1
             stacks_5 += 1
             guarantee_120_counter += 1
@@ -107,19 +110,21 @@ class Endfield(Game):
                              
             # 240회 보너스 (돌파권) 체크
             if guarantee_240_counter == 240:
-                stats["pickup_6"] += 1
+                stats["pull_result"]["pickup_6"] += 1
                 guarantee_240_counter = 0
-                stats["log"].append(f"[Pull {stats['total_pulls']}] 240뽑 돌파권 획득 ({int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
-                if stats["pickup_6"] >= target_copies:
+                stats["logs"]["log"].append(f"[Pull {stats['raw']['pulls']}] 240뽑 돌파권 획득 ({int(stats['pull_result']['pickup_6'])}번 획득: {int(stats['pull_result']['pickup_6'])-1}돌)")
+                stats["logs"]["target"].append(f"P{stats['raw']['pulls']}")
+                if stats["pull_result"]["pickup_6"] >= target_copies:
                     break
 
             # 120회 확정 체크
             if guarantee_120_counter == 120 and not used_120_guarantee:
-                stats["pickup_6"] += 1
+                stats["pull_result"]["pickup_6"] += 1
                 used_120_guarantee = True # 1회용
                 guarantee_120_counter = 0
                 stacks = 0 # 6성 획득이므로 천장스택 리셋
-                stats["log"].append(f"[Pull {stats['total_pulls']}] 120뽑 확정명함 획득")
+                stats["logs"]["log"].append(f"[Pull {stats['raw']['pulls']}] 6★ 픽업 획득 (확정명함 스택 소진)")
+                stats["logs"]["target"].append(f"{stats['raw']['pulls']}")
                 continue
 
             # 6성 확률 계산
@@ -131,28 +136,30 @@ class Endfield(Game):
                 stacks = 0
                 stacks_5 = 0
                 if random.choice([True, False]):
-                    stats["pickup_6"] += 1
+                    stats["pull_result"]["pickup_6"] += 1
                     # 픽업 획득 시 120 카운터 초기화
                     guarantee_120_counter = 0
-                    used_120_guarantee = True # 1회용
-                    if int(stats["pickup_6"]) == 1:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 픽업 획득 (명함)")
+                    if int(stats["pull_result"]["pickup_6"]) == 1 and not used_120_guarantee:
+                        stats["logs"]["log"].append(f"[Pull {stats['raw']['pulls']}] 6★ 픽업 획득 (확정명함 스택 소진)")
+                        stats["logs"]["target"].append(f"{stats['raw']['pulls']}")
                     else:
-                        stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 픽업 획득 ({int(stats['pickup_6'])}번 획득: {int(stats['pickup_6'])-1}돌)")
+                        stats["logs"]["log"].append(f"[Pull {stats['raw']['pulls']}] 6★ 픽업 획득 ({int(stats['pull_result']['pickup_6'])}번 획득: {int(stats['pull_result']['pickup_6'])-1}돌)")
+                        stats["logs"]["target"].append(f"{stats['raw']['pulls']}")
+                    used_120_guarantee = True # 1회용
                 else:
-                    stats["other_6"] += 1
-                    stats["log"].append(f"[Pull {stats['total_pulls']}] 6★ 상시 획득 (픽뚫)")
+                    stats["pull_result"]["other_6"] += 1
+                    stats["logs"]["log"].append(f"[Pull {stats['raw']['pulls']}] 6★ 상시 획득 (픽뚫)")
                 continue
 
             # 5성 (8%)
-            if rnd < 0.08 or stacks_5 == 10:
-                stats["5_star"] += 1
+            if rnd < 0.08 or stacks_5 >= 10:
+                stats["pull_result"]["5_star"] += 1
                 stacks_5 = 0
                 continue
             # 4성 (기본 91.2%, 암튼 여기까지 왔으면 4성)
-            stats["4_star"] += 1
+            stats["pull_result"]["4_star"] += 1
             continue
         
-        stats["weapon_ticket"] = (stats["pickup_6"] + stats["other_6"]) * 2000 + stats["5_star"] * 200 + stats["4_star"] * 20
+        stats["crumbs"]["total"] = (stats["pull_result"]["pickup_6"] + stats["pull_result"]["other_6"]) * 2000 + stats["pull_result"]["5_star"] * 200 + stats["pull_result"]["4_star"] * 20
                 
-        return stats
+        return end_arrange_stats(stats)

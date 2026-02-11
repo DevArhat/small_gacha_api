@@ -46,6 +46,7 @@ class GenshinImpact(Game):
             
         target_copies = target_rank + 1
         stats = {"game": self.game_name,
+                "target_rank": target_rank,                 
                 "total_pulls": 0,
                 "raw":{
                     "pulls":0,
@@ -121,10 +122,10 @@ class GenshinImpact(Game):
                             stats['pull_result']["pickup_5"] += 1
                             if int(stats['pull_result']["pickup_5"]) == 1:
                                 stats['logs']["log"].append(f"[Pull {stats['raw']['pulls']}] 별빛 포착! 5★ 픽업 획득 (명함)")
-                                stats['logs']['target'].append(f"{stats['raw']['pulls']}")
+                                stats['logs']['target'].append(f"R{stats['raw']['pulls']}")
                             else:
                                 stats['logs']["log"].append(f"[Pull {stats['raw']['pulls']}] 별빛 포착! 5★ 픽업 획득 ({int(stats['pull_result']['pickup_5'])}번 획득: {int(stats['pull_result']['pickup_5'])-1}돌)")
-                                stats['logs']['target'].append(f"{stats['raw']['pulls']}")
+                                stats['logs']['target'].append(f"R{stats['raw']['pulls']}")
                                 stats["crumbs"]['total'] += 10
                         else:
                             stats['pull_result']["other_5"] += 1

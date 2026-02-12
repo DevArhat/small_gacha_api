@@ -19,6 +19,8 @@ POST의 request body는
 셋다 기능은 똑같습니다
 
 기본값은 붕스 0돌 (명함)
+
+FastAPI 기반이라서 /docs 하면 swagger 문서를 볼 수 있음
 - - -
 ### {game} : str
 

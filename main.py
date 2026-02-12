@@ -16,7 +16,15 @@ class Gacha(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"message": "GACHA SIMULATOR API"}
+    return {
+        "title": "Gacha Simulator API",
+        "description": "원신, 붕괴스타레일, 젠레스 존 제로, 명조, 엔드필드 가챠 시뮬레이터 API",
+        "usage": "자세한 사용법은 github README 또는 /docs를 참고하세요.",
+        "links": {
+            "documentation": "/docs",
+            "github": "https://github.com/DevArhat/small_gacha_api"
+        },
+    }
 
 @app.get("/list")
 def get_games_list_json():

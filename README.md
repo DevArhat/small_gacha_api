@@ -1,35 +1,38 @@
-# small_gacha_api
+# 외환 유출 시뮬레이터
+## small_gacha_api
 
-## 외환 유출 시뮬레이터
-- - -
+
 ### 사용법
 
 GET >>> /simulate/{game}/{target_rank}<br>
 GET >>> /simulate?game={game}&target_rank={target_rank}<br>
-기본값 = 붕스 0돌(명함)
-
-
 POST >>> /simulate/<br>
-request body는
+POST의 request body는
 ```json
 {
   "game": "string",
   "target_rank": 0
 }
 ```
-이렇게생겼음
+이렇게생겼음<br>(전 POST 보낼줄 모름.. 그냥 이런것도 있구나 하고 넣어본건데 아시는분은 써먹어보세요)
+
+셋다 기능은 똑같습니다
+
+기본값은 붕스 0돌 (명함)
 - - -
 ### {game} : str
 
-//TODO 원붕명젠엔 alias list 마크다운 표로 써보기<br>
-/list 또는<br>
-/list/aliases 에서 구현된 확률모델 목록 확인가능
-
-list의 id로 지정된 항목 뿐 아니라<br>
-aliases에 들어있는 영문 모두 사용할 수 있음
-
-맞는 항목이 없으면 기본값은 붕괴스타레일
+| 게임 | 키워드 |
+| :--- | :--- |
+| 원신 | **gen**, genshin, genshinimpact |
+| 붕스 | **hsr**, honkaisr, starrail, honkaistarrail |
+| 젠레스 | **zzz**, zen, zenless, zenzero, zenlesszonezero, zenzonezero |
+| 명조 | **wuwa**, wutheringwaves |
+| 엔필 | **end**, endfield |
+| 명조(깡) | wuwa_raw, wutheringwaves_raw |
 - - -
+
+
 ### {target_rank} : int
 
 돌파 기준으로 숫자 입력<br>
@@ -38,6 +41,32 @@ aliases에 들어있는 영문 모두 사용할 수 있음
 * 명함: 0
 * 1돌: 1
 * ...
+- - -
+### 부가기능
+
+GET >>> statistics?game={game}&target_rank={target_rank}
+
+각 게임별/돌파별로 50만번씩 시뮬레이션한 결과 기반 통계<br>
+top1, 상위10%, 상위30%, 중간값, 평균, 상위70%, 상위90%, bottom1에 대한 뽑기횟수 / 비용 / 트럭갯수
+
+모든 게임에서 환급 뽑기권이나 명조 산호돌파권 교환 등을 사용하지 않은 기준 (엔드필드 240뽑 돌파권은 일종의 천장이므로 반영되어 있음)
+* 파라미터를 모두 비우면 모든 게임 모든 돌파에 대해 나옴 (전체 데이터)
+* game 파라미터만 있으면 해당 게임의 0~6(5) 돌파에 대해 나옴
+* target_rank 파라미터만 있으면 모든 게임의 해당 돌파에 대해 나옴 (6이면 엔필은 빠짐)
+* 게임별 키워드 = gen, hsr, zzz, wuwa, end
+
+실제로 시뮬레이션 돌리면 기다리기 지루하니까<br>
+돌려본 결과를 json에 하드코딩해놨음
+
+
+<br><br>
+/list 또는<br>
+/list/aliases 에서 구현된 확률모델 목록 확인가능
+
+list의 id로 지정된 항목 뿐 아니라<br>
+aliases에 들어있는 영문 모두 사용할 수 있음
+
+맞는 항목이 없으면 기본값은 붕괴스타레일....
 - - -
 ### 응답 형태 예시
 
@@ -111,7 +140,7 @@ crumbs -> remaining = 남은 페이백 뽑기권 교환재료 수
 logs -> log = 5성 획득 로그<br>
 logs -> target = 픽업이 뜬 회차<br>
 (원신에서 별빛포착으로 먹은 경우 숫자 앞에 R 붙음, 붕/젠은 그런건 딱히 없음)<br>
-(명조는 360산호 교환 타이밍에 산호1, 산호2 이렇게 찍힘)
+(명조는 360산호 교환 타이밍에 산호1, 산호2 이렇게 찍힘) -> wuwa_raw로 돌리면 돌파권 교환 빼고 계산 가능
 
 
 #### 엔드필드
@@ -166,7 +195,7 @@ logs -> target = 픽업이 뜬 회차<br>
 raw -> pulls = 총 뽑기 횟수 (total_pulls랑 같은 값)<br>
 raw -> cost = 뽑기 비용 (뽑기 횟수 기준 추산)
 
-after_exchange -> 0 고정 (뽑기 부산물이 그냥 무기뽑기권이고 캐릭뽑기권 환급식이 아니다보니...)
+<b>after_exchange -> 0 고정</b> (뽑기 부산물이 그냥 무기뽑기권이고 캐릭뽑기권 환급식이 아니다보니...)
 
 trucks -> raw, raw_cost = 총 뽑기 횟수 기준 필요 트럭 갯수, 트럭 기준 비용<br>
 trucks -> after_exchange, after_exchange_cost : 0 고정 (after_exchange의 pulls 및 cost와 동일한 이유)<br>
@@ -191,19 +220,15 @@ logs -> target = 픽업이 뜬 회차<br>
 
 원신이랑 확률설정이 비슷하면서 뽑기로직이 직관적이라서 붕스로 함
 - - -
-명조는 기댓값상 8산호 뽑기권 교환 거르고 360산호 돌파권 사용이 이득 (반박시: 운빨충)
-
+명조는 기댓값상 8산호 뽑기권 교환 거르고 360산호 돌파권 사용이 이득 (반박시: 운빨충)<br>
 -> 2회까지 360산호가 모이면 무조건 돌파권 교환을 하고, 남은 산호로 8산호 뽑기권 교환을 계산함
+
+단, 'wuwa_raw'를 인수로 넣어줬을 경우 산호 돌파권 교환을 하지 않음
 - - -
-명일방주....
+<br><br>
 
-엔필때문에 한번 넣어봤는데
+# DISCLAIMER
 
-깊게 안해본 게임이라 뽑기 시스템을 말로도 이해를 못하고 있음
-
-이게임 그냥 패키지를 풀매수하고 -> 계속 돌리면 -> 언젠간 뜬다 이렇게 이해하고있음
-- - -
-* [x] 일단 돌아가게는 해보기
-* [x] 찌꺼기 재화 계산
-* [ ] 찌꺼기 재화를 뽑기에 페이백해서 사용하는 옵션..?
-* [ ] 명일방주
+- 본 프로젝트는 python 및 fastAPI에 대한 학습 목적으로 구현한 **비공식(Unofficial)** API입니다.
+- 본 프로젝트에서 언급되는 게임 명칭, 로직, 데이터 구조 및 관련 에셋에 대한 모든 권리는 각 원저작권자(HoYoverse, KURO GAMES, Hypergryph, GRYPHLINE 등)에게 있습니다.
+- 본 프로젝트의 상업적 목적 활용을 권장하지 않으며, 사용 시 반드시 각 원저작권자의 2차 창작 및 저작권 가이드라인을 준수하시기 바랍니다.

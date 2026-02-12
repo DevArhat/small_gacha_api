@@ -3,6 +3,8 @@ from pydantic import BaseModel
 import uvicorn
 from simulator import GachaSimulator
 import simulator.games
+from simulator.statistics import get_gacha_statistics
+from typing import Optional
 
 app = FastAPI()
 gacha = GachaSimulator()
@@ -33,6 +35,13 @@ def get_games_list():
     values = [simulator.games.GAMES_CONFIG[key][1] for key in keys]
     return {"games": dict(zip(keys, values))}
 
+@app.get("/statistics")
+def get_statistics(game: str = 'all', target_rank: Optional[int] = None):
+    result = get_gacha_statistics(game, target_rank)
+    return result
+
+
+
 @app.get("/simulate")
 def simulate_gacha(game: str = 'hsr', target_rank: int = 0):
     result = gacha.simulate(game, target_rank)
@@ -42,7 +51,6 @@ def simulate_gacha(game: str = 'hsr', target_rank: int = 0):
 def simulate_gacha_get(game: str, target_rank: int):
     result = gacha.simulate(game, target_rank)
     return result
-
 
 @app.post("/simulate/")
 def simulate_gacha_post(gacha_request: Gacha):

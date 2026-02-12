@@ -78,7 +78,7 @@ class WutheringWaves(Game):
         
         while stats["pull_result"]["pickup_5"] < target_copies:
             
-            if stats['crumbs']['total'] >= 360 and crumbs_exchanged <2:
+            if stats['crumbs']['total'] >= 360 and crumbs_exchanged < 2 and not("미교환" in self.game_name):
                 stats['pull_result']['pickup_5'] += 1
                 stats['crumbs']['total'] -= 360
                 crumbs_exchanged += 1

@@ -1,6 +1,6 @@
 # 외환 유출 시뮬레이터
-## small_gacha_api
 
+## gacha-simulator-api.vercel.app
 
 ### 사용법
 

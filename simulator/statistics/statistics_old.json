@@ -1,0 +1,226 @@
+{
+  "0": {
+    "pulls": {
+      "max": { "end": 120, "gen": 171, "wuwa": 156, "hsr": 172, "zzz": 170 },
+      "top_10": { "end": 120, "gen": 155, "wuwa": 140, "hsr": 155, "zzz": 155 },
+      "top_30": { "end": 120, "gen": 115, "wuwa": 100, "hsr": 119, "zzz": 118 },
+      "median": { "end": 72, "gen": 80, "wuwa": 73, "hsr": 80, "zzz": 80 },
+      "average": { "end": 79.31, "gen": 91.97, "wuwa": 81.16, "hsr": 93.43, "zzz": 93.31 },
+      "bottom_30": { "end": 67, "gen": 76, "wuwa": 68, "hsr": 76, "zzz": 76 },
+      "bottom_10": { "end": 27, "gen": 33, "wuwa": 26, "hsr": 34, "zzz": 34 },
+      "min": { "end": 1, "gen": 1, "wuwa": 1, "hsr": 1, "zzz": 1 }
+    },
+    "cost": {
+      "max": { "end": 306000, "gen": 402951, "wuwa": 367604, "hsr": 405307, "zzz": 400595 },
+      "top_10": { "end": 306000, "gen": 365248, "wuwa": 329901, "hsr": 365248, "zzz": 365248 },
+      "top_30": { "end": 306000, "gen": 270991, "wuwa": 235644, "hsr": 280416, "zzz": 278060 },
+      "median": { "end": 183600, "gen": 188515, "wuwa": 172020, "hsr": 188515, "zzz": 188515 },
+      "average": { "end": 202235.77, "gen": 216715.66, "wuwa": 191255.43, "hsr": 220167.03, "zzz": 219872.69 },
+      "bottom_30": { "end": 170850, "gen": 179090, "wuwa": 160238, "hsr": 179090, "zzz": 179090 },
+      "bottom_10": { "end": 68850, "gen": 77763, "wuwa": 61268, "hsr": 80119, "zzz": 80119 },
+      "min": { "end": 2550, "gen": 2357, "wuwa": 2357, "hsr": 2357, "zzz": 2357 }
+    },
+    "trucks": {
+      "max": { "end": 2, "gen": 4, "wuwa": 4, "hsr": 4, "zzz": 4 },
+      "top_10": { "end": 2, "gen": 4, "wuwa": 3, "hsr": 4, "zzz": 4 },
+      "top_30": { "end": 2, "gen": 3, "wuwa": 2, "hsr": 3, "zzz": 3 },
+      "median": { "end": 2, "gen": 2, "wuwa": 2, "hsr": 2, "zzz": 2 },
+      "average": { "end": 1.76, "gen": 2.37, "wuwa": 2.10, "hsr": 2.40, "zzz": 2.40 },
+      "bottom_30": { "end": 2, "gen": 2, "wuwa": 2, "hsr": 2, "zzz": 2 },
+      "bottom_10": { "end": 1, "gen": 1, "wuwa": 1, "hsr": 1, "zzz": 1 },
+      "min": { "end": 1, "gen": 1, "wuwa": 1, "hsr": 1, "zzz": 1 }
+    }
+  },
+  "1": {
+    "pulls": {
+      "max": { "end": 240, "gen": 332, "wuwa": 301, "hsr": 331, "zzz": 330 },
+      "top_10": { "end": 240, "gen": 256, "wuwa": 231, "hsr": 265, "zzz": 266 },
+      "top_30": { "end": 207, "gen": 226, "wuwa": 197, "hsr": 228, "zzz": 228 },
+      "median": { "end": 173, "gen": 179, "wuwa": 158, "hsr": 183, "zzz": 183 },
+      "average": { "end": 167.79, "gen": 183.78, "wuwa": 162.24, "hsr": 186.95, "zzz": 186.98 },
+      "bottom_30": { "end": 137, "gen": 154, "wuwa": 136, "hsr": 155, "zzz": 155 },
+      "bottom_10": { "end": 86, "gen": 103, "wuwa": 89, "hsr": 105, "zzz": 105 },
+      "min": { "end": 2, "gen": 2, "wuwa": 2, "hsr": 2, "zzz": 2 }
+    },
+    "cost": {
+      "max": { "end": 612000, "gen": 782337, "wuwa": 709288, "hsr": 779981, "zzz": 777624 },
+      "top_10": { "end": 612000, "gen": 603248, "wuwa": 544337, "hsr": 624456, "zzz": 626812 },
+      "top_30": { "end": 527850, "gen": 532555, "wuwa": 464218, "hsr": 537268, "zzz": 537268 },
+      "median": { "end": 441150, "gen": 421802, "wuwa": 372317, "hsr": 431228, "zzz": 431228 },
+      "average": { "end": 427876.79, "gen": 433066.55, "wuwa": 382309.63, "hsr": 440540.31, "zzz": 440601.85 },
+      "bottom_30": { "end": 349350, "gen": 362892, "wuwa": 320476, "hsr": 365248, "zzz": 365248 },
+      "bottom_10": { "end": 219300, "gen": 242713, "wuwa": 209723, "hsr": 247426, "zzz": 247426 },
+      "min": { "end": 5100, "gen": 4713, "wuwa": 4713, "hsr": 4713, "zzz": 4713 }
+    },
+    "trucks": {
+      "max": { "end": 4, "gen": 7, "wuwa": 6, "hsr": 7, "zzz": 7 },
+      "top_10": { "end": 4, "gen": 6, "wuwa": 5, "hsr": 6, "zzz": 6 },
+      "top_30": { "end": 4, "gen": 5, "wuwa": 4, "hsr": 5, "zzz": 5 },
+      "median": { "end": 3, "gen": 4, "wuwa": 4, "hsr": 4, "zzz": 4 },
+      "average": { "end": 3.22, "gen": 4.16, "wuwa": 3.71, "hsr": 4.23, "zzz": 4.23 },
+      "bottom_30": { "end": 3, "gen": 4, "wuwa": 3, "hsr": 4, "zzz": 4 },
+      "bottom_10": { "end": 2, "gen": 3, "wuwa": 2, "hsr": 3, "zzz": 3 },
+      "min": { "end": 1, "gen": 1, "wuwa": 1, "hsr": 1, "zzz": 1 }
+    }
+  },
+  "2": {
+    "pulls": {
+      "max": { "end": 480, "gen": 410, "wuwa": 446, "hsr": 490, "zzz": 485 },
+      "top_10": { "end": 300, "gen": 359, "wuwa": 335, "hsr": 383, "zzz": 383 },
+      "top_30": { "end": 240, "gen": 310, "wuwa": 281, "hsr": 317, "zzz": 317 },
+      "median": { "end": 240, "gen": 272, "wuwa": 242, "hsr": 280, "zzz": 281 },
+      "average": { "end": 234.63, "gen": 269.93, "wuwa": 243.38, "hsr": 280.20, "zzz": 280.44 },
+      "bottom_30": { "end": 218, "gen": 235, "wuwa": 208, "hsr": 238, "zzz": 238 },
+      "bottom_10": { "end": 158, "gen": 180, "wuwa": 155, "hsr": 182, "zzz": 182 },
+      "min": { "end": 6, "gen": 12, "wuwa": 8, "hsr": 11, "zzz": 10 }
+    },
+    "cost": {
+      "max": { "end": 1224000, "gen": 966139, "wuwa": 1050971, "hsr": 1154654, "zzz": 1142872 },
+      "top_10": { "end": 765000, "gen": 845961, "wuwa": 789406, "hsr": 902515, "zzz": 902515 },
+      "top_30": { "end": 612000, "gen": 730496, "wuwa": 662159, "hsr": 746991, "zzz": 746991 },
+      "median": { "end": 612000, "gen": 640951, "wuwa": 570258, "hsr": 659802, "zzz": 662159 },
+      "average": { "end": 598307.12, "gen": 636081.80, "wuwa": 573512.87, "hsr": 660262.24, "zzz": 660830.46 },
+      "bottom_30": { "end": 555900, "gen": 553763, "wuwa": 490139, "hsr": 560832, "zzz": 560832 },
+      "bottom_10": { "end": 402900, "gen": 424159, "wuwa": 365248, "hsr": 428872, "zzz": 428872 },
+      "min": { "end": 15300, "gen": 28278, "wuwa": 18852, "hsr": 25921, "zzz": 23565 }
+    },
+    "trucks": {
+      "max": { "end": 8, "gen": 9, "wuwa": 9, "hsr": 10, "zzz": 10 },
+      "top_10": { "end": 5, "gen": 8, "wuwa": 7, "hsr": 8, "zzz": 8 },
+      "top_30": { "end": 4, "gen": 7, "wuwa": 6, "hsr": 7, "zzz": 7 },
+      "median": { "end": 4, "gen": 6, "wuwa": 5, "hsr": 6, "zzz": 6 },
+      "average": { "end": 4.19, "gen": 5.85, "wuwa": 5.32, "hsr": 6.05, "zzz": 6.06 },
+      "bottom_30": { "end": 4, "gen": 5, "wuwa": 5, "hsr": 5, "zzz": 5 },
+      "bottom_10": { "end": 3, "gen": 4, "wuwa": 4, "hsr": 4, "zzz": 4 },
+      "min": { "end": 1, "gen": 1, "wuwa": 1, "hsr": 1, "zzz": 1 }
+    }
+  },
+  "3": {
+    "pulls": {
+      "max": { "end": 720, "gen": 571, "wuwa": 587, "hsr": 646, "zzz": 643 },
+      "top_10": { "end": 456, "gen": 464, "wuwa": 426, "hsr": 483, "zzz": 483 },
+      "top_30": { "end": 334, "gen": 404, "wuwa": 365, "hsr": 419, "zzz": 419 },
+      "median": { "end": 269, "gen": 364, "wuwa": 324, "hsr": 375, "zzz": 375 },
+      "average": { "end": 303.17, "gen": 361.90, "wuwa": 324.50, "hsr": 373.66, "zzz": 373.71 },
+      "bottom_30": { "end": 240, "gen": 320, "wuwa": 283, "hsr": 326, "zzz": 326 },
+      "bottom_10": { "end": 235, "gen": 258, "wuwa": 224, "hsr": 262, "zzz": 262 },
+      "min": { "end": 12, "gen": 24, "wuwa": 23, "hsr": 33, "zzz": 32 }
+    },
+    "cost": {
+      "max": { "end": 1836000, "gen": 1345525, "wuwa": 1383228, "hsr": 1522258, "zzz": 1515189 },
+      "top_10": { "end": 1162800, "gen": 1093387, "wuwa": 1003842, "hsr": 1138159, "zzz": 1138159 },
+      "top_30": { "end": 851700, "gen": 952000, "wuwa": 860100, "hsr": 987347, "zzz": 987347 },
+      "median": { "end": 685950, "gen": 857743, "wuwa": 763486, "hsr": 883664, "zzz": 883664 },
+      "average": { "end": 773077.32, "gen": 852788.89, "wuwa": 764662.72, "hsr": 880517.75, "zzz": 880631.07 },
+      "bottom_30": { "end": 612000, "gen": 754060, "wuwa": 666872, "hsr": 768199, "zzz": 768199 },
+      "bottom_10": { "end": 599250, "gen": 607961, "wuwa": 527842, "hsr": 617387, "zzz": 617387 },
+      "min": { "end": 30600, "gen": 56555, "wuwa": 54199, "hsr": 77763, "zzz": 75406 }
+    },
+    "trucks": {
+      "max": { "end": 12, "gen": 12, "wuwa": 12, "hsr": 13, "zzz": 13 },
+      "top_10": { "end": 8, "gen": 10, "wuwa": 9, "hsr": 10, "zzz": 10 },
+      "top_30": { "end": 6, "gen": 8, "wuwa": 8, "hsr": 9, "zzz": 9 },
+      "median": { "end": 5, "gen": 8, "wuwa": 7, "hsr": 8, "zzz": 8 },
+      "average": { "end": 5.38, "gen": 7.66, "wuwa": 6.92, "hsr": 7.90, "zzz": 7.90 },
+      "bottom_30": { "end": 4, "gen": 7, "wuwa": 6, "hsr": 7, "zzz": 7 },
+      "bottom_10": { "end": 4, "gen": 6, "wuwa": 5, "hsr": 6, "zzz": 6 },
+      "min": { "end": 1, "gen": 1, "wuwa": 1, "hsr": 1, "zzz": 1 }
+    }
+  },
+  "4": {
+    "pulls": {
+      "max": { "end": 960, "gen": 721, "wuwa": 729, "hsr": 802, "zzz": 794 },
+      "top_10": { "end": 480, "gen": 556, "wuwa": 519, "hsr": 593, "zzz": 593 },
+      "top_30": { "end": 457, "gen": 497, "wuwa": 452, "hsr": 519, "zzz": 519 },
+      "median": { "end": 377, "gen": 453, "wuwa": 405, "hsr": 467, "zzz": 467 },
+      "average": { "end": 380.84, "gen": 449.55, "wuwa": 405.75, "hsr": 467.40, "zzz": 467.23 },
+      "bottom_30": { "end": 312, "gen": 406, "wuwa": 359, "hsr": 415, "zzz": 415 },
+      "bottom_10": { "end": 240, "gen": 337, "wuwa": 293, "hsr": 343, "zzz": 342 },
+      "min": { "end": 39, "gen": 56, "wuwa": 54, "hsr": 46, "zzz": 75 }
+    },
+    "cost": {
+      "max": { "end": 2448000, "gen": 1698991, "wuwa": 1717842, "hsr": 1889862, "zzz": 1871010 },
+      "top_10": { "end": 1224000, "gen": 1310179, "wuwa": 1222991, "hsr": 1397367, "zzz": 1397367 },
+      "top_30": { "end": 1165350, "gen": 1171149, "wuwa": 1065109, "hsr": 1222991, "zzz": 1222991 },
+      "median": { "end": 961350, "gen": 1067466, "wuwa": 954357, "hsr": 1100456, "zzz": 1100456 },
+      "average": { "end": 971148.82, "gen": 1059325.15, "wuwa": 956119.58, "hsr": 1101403.56, "zzz": 1101001.23 },
+      "bottom_30": { "end": 795600, "gen": 956713, "wuwa": 845961, "hsr": 977921, "zzz": 977921 },
+      "bottom_10": { "end": 612000, "gen": 794119, "wuwa": 690436, "hsr": 808258, "zzz": 805901 },
+      "min": { "end": 99450, "gen": 131961, "wuwa": 127248, "hsr": 108397, "zzz": 176733 }
+    },
+    "trucks": {
+      "max": { "end": 16, "gen": 15, "wuwa": 15, "hsr": 16, "zzz": 16 },
+      "top_10": { "end": 8, "gen": 12, "wuwa": 11, "hsr": 12, "zzz": 12 },
+      "top_30": { "end": 8, "gen": 10, "wuwa": 9, "hsr": 11, "zzz": 11 },
+      "median": { "end": 7, "gen": 9, "wuwa": 9, "hsr": 10, "zzz": 10 },
+      "average": { "end": 6.70, "gen": 9.40, "wuwa": 8.53, "hsr": 9.75, "zzz": 9.75 },
+      "bottom_30": { "end": 6, "gen": 9, "wuwa": 8, "hsr": 9, "zzz": 9 },
+      "bottom_10": { "end": 4, "gen": 7, "wuwa": 6, "hsr": 7, "zzz": 7 },
+      "min": { "end": 1, "gen": 2, "wuwa": 2, "hsr": 1, "zzz": 2 }
+    }
+  },
+  "5": {
+    "pulls": {
+      "max": { "end": 1200, "gen": 805, "wuwa": 865, "hsr": 946, "zzz": 953 },
+      "top_10": { "end": 599, "gen": 658, "wuwa": 611, "hsr": 697, "zzz": 698 },
+      "top_30": { "end": 480, "gen": 592, "wuwa": 537, "hsr": 617, "zzz": 617 },
+      "median": { "end": 480, "gen": 543, "wuwa": 486, "hsr": 560, "zzz": 560 },
+      "average": { "end": 456.74, "gen": 539.77, "wuwa": 486.76, "hsr": 560.57, "zzz": 560.65 },
+      "bottom_30": { "end": 406, "gen": 492, "wuwa": 435, "hsr": 504, "zzz": 504 },
+      "bottom_10": { "end": 315, "gen": 417, "wuwa": 363, "hsr": 424, "zzz": 424 },
+      "min": { "end": 97, "gen": 114, "wuwa": 41, "hsr": 106, "zzz": 108 }
+    },
+    "cost": {
+      "max": { "end": 3060000, "gen": 1896931, "wuwa": 2038317, "hsr": 2229189, "zzz": 2245684 },
+      "top_10": { "end": 1527450, "gen": 1550535, "wuwa": 1439783, "hsr": 1642436, "zzz": 1644793 },
+      "top_30": { "end": 1224000, "gen": 1395010, "wuwa": 1265406, "hsr": 1453921, "zzz": 1453921 },
+      "median": { "end": 1224000, "gen": 1279545, "wuwa": 1145228, "hsr": 1319604, "zzz": 1319604 },
+      "average": { "end": 1164681.53, "gen": 1271925.41, "wuwa": 1147028.80, "hsr": 1320952.02, "zzz": 1321142.69 },
+      "bottom_30": { "end": 1035300, "gen": 1159367, "wuwa": 1025050, "hsr": 1187644, "zzz": 1187644 },
+      "bottom_10": { "end": 803250, "gen": 982634, "wuwa": 855387, "hsr": 999129, "zzz": 999129 },
+      "min": { "end": 247350, "gen": 268634, "wuwa": 96614, "hsr": 249783, "zzz": 254496 }
+    },
+    "trucks": {
+      "max": { "end": 20, "gen": 16, "wuwa": 18, "hsr": 19, "zzz": 19 },
+      "top_10": { "end": 10, "gen": 14, "wuwa": 13, "hsr": 14, "zzz": 14 },
+      "top_30": { "end": 8, "gen": 12, "wuwa": 11, "hsr": 13, "zzz": 13 },
+      "median": { "end": 8, "gen": 11, "wuwa": 10, "hsr": 12, "zzz": 12 },
+      "average": { "end": 7.95, "gen": 11.18, "wuwa": 10.13, "hsr": 11.60, "zzz": 11.60 },
+      "bottom_30": { "end": 7, "gen": 10, "wuwa": 9, "hsr": 10, "zzz": 10 },
+      "bottom_10": { "end": 6, "gen": 9, "wuwa": 8, "hsr": 9, "zzz": 9 },
+      "min": { "end": 2, "gen": 3, "wuwa": 1, "hsr": 3, "zzz": 3 }
+    }
+  },
+  "6": {
+    "pulls": {
+      "max": { "gen": 953, "wuwa": 1002, "hsr": 1092, "zzz": 1098 },
+      "top_10": { "gen": 755, "wuwa": 702, "hsr": 801, "zzz": 801 },
+      "top_30": { "gen": 684, "wuwa": 623, "hsr": 714, "zzz": 714 },
+      "median": { "gen": 632, "wuwa": 568, "hsr": 654, "zzz": 654 },
+      "average": { "gen": 628.75, "wuwa": 568.26, "hsr": 654.04, "zzz": 654.14 },
+      "bottom_30": { "gen": 578, "wuwa": 513, "hsr": 593, "zzz": 593 },
+      "bottom_10": { "gen": 498, "wuwa": 435, "hsr": 507, "zzz": 507 },
+      "min": { "gen": 74, "wuwa": 101, "hsr": 187, "zzz": 166 }
+    },
+    "cost": {
+      "max": { "gen": 2245684, "wuwa": 2361149, "hsr": 2573228, "zzz": 2587367 },
+      "top_10": { "gen": 1779109, "wuwa": 1654218, "hsr": 1887505, "zzz": 1887505 },
+      "top_30": {"gen": 1611802, "wuwa": 1468060, "hsr": 1682496, "zzz": 1682496},
+      "median": { "gen": 1489268, "wuwa": 1338456, "hsr": 1541109, "zzz": 1541109 },
+      "average": { "gen": 1481612.90, "wuwa": 1339077.15, "hsr": 1541206.62, "zzz": 1541441.56 },
+      "bottom_30": { "gen": 1362020, "wuwa": 1208852, "hsr": 1397367, "zzz": 1397367 },
+      "bottom_10": { "gen": 1173505, "wuwa": 1025050, "hsr": 1194713, "zzz": 1194713 },
+      "min": { "gen": 174377, "wuwa": 238000, "hsr": 440654, "zzz": 391169 }
+    },
+    "trucks": {
+      "max": { "gen": 19, "wuwa": 20, "hsr": 22, "zzz": 22 },
+      "top_10": { "gen": 15, "wuwa": 14, "hsr": 16, "zzz": 16 },
+      "top_30": { "gen": 14, "wuwa": 13, "hsr": 15, "zzz": 15 },
+      "median": { "gen": 13, "wuwa": 12, "hsr": 13, "zzz": 13 },
+      "average": { "gen": 12.95, "wuwa": 11.75, "hsr": 13.45, "zzz": 13.45 },
+      "bottom_30": { "gen": 12, "wuwa": 11, "hsr": 12, "zzz": 12 },
+      "bottom_10": { "gen": 10, "wuwa": 9, "hsr": 11, "zzz": 11 },
+      "min": { "gen": 2, "wuwa": 2, "hsr": 4, "zzz": 4 }
+    }
+  }
+}

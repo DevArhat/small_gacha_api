@@ -1,6 +1,6 @@
 import random
 from simulator.games._base import Game
-from simulator.games.hypergryph import end_arrange_stats
+from simulator.games.hypergryph import end_arrange_stats, init_stats
 
 # 기본확률 0.8%
 # 65회부터 확률 증가
@@ -15,39 +15,10 @@ class Endfield(Game):
         target_rank = max(0, min(target_rank, 5))
             
         target_copies = target_rank + 1
-        stats = {"game": self.game_name,
-                "target_rank": target_rank,
-                "total_pulls": 0,
-                "raw":{
-                    "pulls":0,
-                    "cost":0,
-                    },
-                "after_exchange":{
-                    "pulls":0,
-                    "cost":0,
-                    },
-                "trucks":{
-                    "raw": 0,
-                    "after_exchange": 0,
-                    "raw_cost": 0,
-                    "after_exchange_cost": 0,
-                    },
-                "pull_result":{
-                    "pickup_6": 0,
-                    "other_6": 0,
-                    "5_star": 0,
-                    "4_star": 0,
-                    },
-                "crumbs": {
-                    "total": 0,
-                    "tickets_changed": 0,
-                    "remaining": 0,
-                    },
-                "logs": {
-                    "log": [],
-                    "target": [] 
-                    }
-                }
+        stats = init_stats()
+        
+        stats['game'] = self.game_name
+        stats['target_rank'] = target_rank
         
         stacks = 0
         stacks_5 = 0
@@ -70,31 +41,31 @@ class Endfield(Game):
                     emergency_rnd = random.random()
                     
                     if emergency_rnd < 0.008:
+                        emergency_5star = True
                         if random.choice([True, False]):
                             stats["pull_result"]["pickup_6"] += 1
                             # 외부 스택과 완전 무관함
                             # 픽업 획득 시에도 120회 카운터를 비롯한 스택이 초기화되지 않음
-                    
+                            stats["logs"]["target"].append(f"E{i+1}")
                             if int(stats["pull_result"]["pickup_6"]) == 1:
                                 stats["logs"]["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 (명함)")
-                                stats["logs"]["target"].append(f"E{stats['raw']['pulls']}")
                             else:
                                 stats["logs"]["log"].append(f"[긴급 {i+1}] 6★ 픽업 획득 ({int(stats['pull_result']['pickup_6'])}번 획득: {int(stats['pull_result']['pickup_6'])-1}돌)")
-                                stats["logs"]["target"].append(f"E{stats['raw']['pulls']}")
+                                
                         else:
                             stats["pull_result"]["other_6"] += 1
                             stats["logs"]["log"].append(f"[긴급 {i+1}] 6★ 상시 획득 (픽뚫)")
                     
                     
                     elif emergency_rnd < 0.08:
-                        stats["pull_result"]["5_star"] += 1
+                        stats["pull_result"]["star_5"] += 1
                         emergency_5star = True
                     
                     else:
                         if i == 9 and not emergency_5star:
-                            stats["pull_result"]["5_star"] += 1
+                            stats["pull_result"]["star_5"] += 1
                         else:
-                            stats["pull_result"]["4_star"] += 1
+                            stats["pull_result"]["star_4"] += 1
                 
     
                 if stats["pull_result"]["pickup_6"] >= target_copies:
@@ -153,13 +124,13 @@ class Endfield(Game):
 
             # 5성 (8%)
             if rnd < 0.08 or stacks_5 >= 10:
-                stats["pull_result"]["5_star"] += 1
+                stats["pull_result"]["star_5"] += 1
                 stacks_5 = 0
                 continue
             # 4성 (기본 91.2%, 암튼 여기까지 왔으면 4성)
-            stats["pull_result"]["4_star"] += 1
+            stats["pull_result"]["star_4"] += 1
             continue
         
-        stats["crumbs"]["total"] = (stats["pull_result"]["pickup_6"] + stats["pull_result"]["other_6"]) * 2000 + stats["pull_result"]["5_star"] * 200 + stats["pull_result"]["4_star"] * 20
+        stats["crumbs"]["total"] = (stats["pull_result"]["pickup_6"] + stats["pull_result"]["other_6"]) * 2000 + stats["pull_result"]["star_5"] * 200 + stats["pull_result"]["star_4"] * 20
                 
         return end_arrange_stats(stats)

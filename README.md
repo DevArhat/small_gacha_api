@@ -81,48 +81,49 @@ JSON 형식으로 반환
 {
   "game": "원신",
   "target_rank": 6,
-  "total_pulls": 876,
+  "total_pulls": 600,
   "raw": {
-    "pulls": 876,
-    "cost": 2064238
+    "pulls": 600,
+    "cost": 1413862
   },
   "after_exchange": {
-    "pulls": 765,
-    "cost": 1802674
+    "pulls": 523,
+    "cost": 1232416
   },
   "trucks": {
-    "raw": 18,
-    "after_exchange": 16,
-    "raw_cost": 2142000,
-    "after_exchange_cost": 1904000
+    "raw": 12,
+    "after_exchange": 11,
+    "raw_cost": 1428000,
+    "after_exchange_cost": 1309000
   },
   "pull_result": {
+    "pickup_6": 0,
+    "other_6": 0,
     "pickup_5": 7,
-    "other_5": 5,
-    "4_star": 105,
-    "weapon_3": 759
+    "other_5": 3,
+    "star_5": 0,
+    "star_4": 75,
+    "weapon_3": 515
   },
   "crumbs": {
-    "total": 557,
-    "tickets_changed": 111,
+    "total": 387,
+    "tickets_changed": 77,
     "remaining": 2
   },
   "logs": {
     "log": [
-      "[Pull 75] 5★ 상시 획득 (픽뚫)",
-      "[Pull 151] 5★ 픽업 획득 (명함)",
-      "[Pull 226] 5★ 상시 획득 (픽뚫)",
-      "[Pull 305] 5★ 픽업 획득 (2번 획득: 1돌)",
-      "[Pull 378] 별빛 포착! 5★ 픽업 획득 (3번 획득: 2돌)",
-      "[Pull 453] 5★ 상시 획득 (픽뚫)",
-      "[Pull 534] 5★ 픽업 획득 (4번 획득: 3돌)",
-      "[Pull 612] 5★ 픽업 획득 (5번 획득: 4돌)",
-      "[Pull 679] 5★ 상시 획득 (픽뚫)",
-      "[Pull 723] 5★ 픽업 획득 (6번 획득: 5돌)",
-      "[Pull 798] 5★ 상시 획득 (픽뚫)",
-      "[Pull 876] 5★ 픽업 획득 (7번 획득: 6돌)"
+      "[Pull 3] 5★ 상시 획득 (픽뚫)",
+      "[Pull 83] 5★ 픽업 획득 (명함)",
+      "[Pull 157] 5★ 상시 획득 (픽뚫)",
+      "[Pull 231] 5★ 픽업 획득 (2번 획득: 1돌)",
+      "[Pull 306] 별빛 포착! 5★ 픽업 획득 (3번 획득: 2돌)",
+      "[Pull 381] 5★ 픽업 획득 (4번 획득: 3돌)",
+      "[Pull 436] 5★ 상시 획득 (픽뚫)",
+      "[Pull 507] 5★ 픽업 획득 (5번 획득: 4돌)",
+      "[Pull 520] 5★ 픽업 획득 (6번 획득: 5돌)",
+      "[Pull 600] 5★ 픽업 획득 (7번 획득: 6돌)"
     ],
-    "target": ["151", "305", "R378", "534", "612", "723", "876"]
+    "target": ["83", "231", "R306", "381", "507", "520", "600"]
   }
 }
 ```
@@ -139,6 +140,8 @@ crumbs -> total = 페이백 뽑기권 교환재료 총 획득 갯수<br>
 crumbs -> tickets_changed = 그걸로 바꾼 뽑기권 수<br>
 crumbs -> remaining = 남은 페이백 뽑기권 교환재료 수
 
+pull_result -> pickup_6, other_6, star_5 = 여기서는 사용하지 않는 값 (엔드필드 전용)
+
 logs -> log = 5성 획득 로그<br>
 logs -> target = 픽업이 뜬 회차<br>
 (원신에서 별빛포착으로 먹은 경우 숫자 앞에 R 붙음, 붕/젠은 그런건 딱히 없음)<br>
@@ -151,10 +154,10 @@ logs -> target = 픽업이 뜬 회차<br>
 {
   "game": "엔드필드",
   "target_rank": 5,
-  "total_pulls": 480,
+  "total_pulls": 438,
   "raw": {
-    "pulls": 480,
-    "cost": 1224000
+    "pulls": 438,
+    "cost": 1116900
   },
   "after_exchange": {
     "pulls": 0,
@@ -168,29 +171,31 @@ logs -> target = 픽업이 뜬 회차<br>
   },
   "pull_result": {
     "pickup_6": 6,
-    "other_6": 4,
-    "5_star": 60,
-    "4_star": 421
+    "other_6": 3,
+    "pickup_5": 0,
+    "other_5": 0,
+    "star_5": 58,
+    "star_4": 382,
+    "weapon_3": 0
   },
   "crumbs": {
-    "total": 40420,
-    "tickets_changed": 204,
-    "remaining": 28
+    "total": 37240,
+    "tickets_changed": 188,
+    "remaining": 16
   },
   "logs": {
     "log": [
-      "[Pull 60] 6★ 픽업 획득 (확정명함 스택 소진)",
-      "[Pull 83] 6★ 상시 획득 (픽뚫)",
-      "[Pull 149] 6★ 픽업 획득 (2번 획득: 1돌)",
-      "[Pull 220] 6★ 상시 획득 (픽뚫)",
-      "[Pull 240] 240뽑 돌파권 획득 (3번 획득: 2돌)",
-      "[Pull 256] 6★ 픽업 획득 (4번 획득: 3돌)",
-      "[Pull 328] 6★ 상시 획득 (픽뚫)",
-      "[Pull 399] 6★ 픽업 획득 (5번 획득: 4돌)",
-      "[Pull 468] 6★ 상시 획득 (픽뚫)",
-      "[Pull 480] 240뽑 돌파권 획득 (6번 획득: 5돌)"
+      "[긴급 8] 6★ 픽업 획득 (명함)",
+      "[Pull 67] 6★ 상시 획득 (픽뚫)",
+      "[Pull 120] 6★ 픽업 획득 (확정명함 스택 소진)",
+      "[Pull 188] 6★ 픽업 획득 (3번 획득: 2돌)",
+      "[Pull 240] 240뽑 돌파권 획득 (4번 획득: 3돌)",
+      "[Pull 243] 6★ 상시 획득 (픽뚫)",
+      "[Pull 313] 6★ 상시 획득 (픽뚫)",
+      "[Pull 366] 6★ 픽업 획득 (5번 획득: 4돌)",
+      "[Pull 438] 6★ 픽업 획득 (6번 획득: 5돌)"
     ],
-    "target": ["60", "149", "P240", "256", "399", "P480"]
+    "target": ["E8", "120", "188", "P240", "366", "438"]
   }
 }
 ```
@@ -207,6 +212,8 @@ trucks -> after_exchange, after_exchange_cost : 0 고정 (after_exchange의 pull
 crumbs -> total = 무기뽑기재료 총 획득 갯수<br>
 crumbs -> tickets_changed = 그걸로 무기뽑을 돌릴 수 있는 수<br>
 crumbs -> remaining = 남은 무기뽑기재료 수
+
+pull_result -> pickup_5, other_5, weapon_3 = 엔드필드에서는 사용하지 않는 값
 
 logs -> log = 6성 획득 로그<br>
 logs -> target = 픽업이 뜬 회차<br>

@@ -1,6 +1,6 @@
 import random
 from simulator.games._base import Game
-from simulator.games.hoyoverse import arrange_stats
+from simulator.games.hoyoverse import arrange_stats, init_stats
 
 
 # S급 관련 확률 정리
@@ -41,39 +41,11 @@ class ZenlessZoneZero(Game):
         target_rank = max(0, min(target_rank, 6))
             
         target_copies = target_rank + 1
-        stats = {"game": self.game_name,
-                "target_rank": target_rank,                 
-                "total_pulls": 0,
-                "raw":{
-                    "pulls":0,
-                    "cost":0,
-                    },
-                "after_exchange":{
-                    "pulls":0,
-                    "cost":0,
-                    },
-                "trucks":{
-                    "raw": 0,
-                    "after_exchange": 0,
-                    "raw_cost": 0,
-                    "after_exchange_cost": 0,
-                    },
-                "pull_result":{
-                    "pickup_5": 0,
-                    "other_5": 0,
-                    "4_star": 0,
-                    "weapon_3": 0,
-                    },
-                "crumbs": {
-                    "total": 0,
-                    "tickets_changed": 0,
-                    "remaining": 0,
-                    },
-                "logs": {
-                    "log": [],
-                    "target": [] 
-                    }
-                }       
+        stats = init_stats()
+        
+        stats['game'] = self.game_name
+        stats['target_rank'] = target_rank
+         
         stack_5 = 0
         stack_4 = 0
         guaranteed = False
@@ -130,7 +102,7 @@ class ZenlessZoneZero(Game):
             # 더 좋은 예측 모델이 있으면 잔류신호 관련된 부분은 수정 필요함
             rate_4 = 0.094
             if stack_4 >= 10 or curr_random < rate_4:
-                stats["pull_result"]["4_star"] += 1
+                stats["pull_result"]["star_4"] += 1
                 stats["crumbs"]["total"] += 20
                 stack_4 = 0
                 # 엔진이 떴는지 캐릭터가 떴는지 판단하는 랜덤숫자

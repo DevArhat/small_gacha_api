@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import uvicorn
 from simulator import GachaSimulator
 import simulator.games
@@ -8,6 +8,30 @@ from typing import Optional
 
 app = FastAPI()
 gacha = GachaSimulator()
+
+class PullResult(BaseModel):
+    pickup_6: int = 0 
+    other_6: int = 0
+    
+    pickup_5: int = 0
+    other_5: int = 0
+
+    star_5: int = 0
+    
+    star_4: int = 0
+    
+    weapon_3: int = 0
+
+class SimulationResponse(BaseModel):
+    game: str
+    target_rank: int
+    total_pulls: int
+    raw: dict
+    after_exchange: dict
+    trucks: dict
+    pull_result: PullResult
+    crumbs: dict
+    logs: dict
 
 class Gacha(BaseModel):
     game: str
@@ -50,17 +74,17 @@ def get_statistics(game: str = 'all', target_rank: Optional[int] = None):
 
 
 
-@app.get("/simulate")
+@app.get("/simulate", response_model=SimulationResponse)
 def simulate_gacha(game: str = 'hsr', target_rank: int = 0):
     result = gacha.simulate(game, target_rank)
     return result
 
-@app.get("/simulate/{game}/{target_rank}")
+@app.get("/simulate/{game}/{target_rank}", response_model=SimulationResponse)
 def simulate_gacha_get(game: str, target_rank: int):
     result = gacha.simulate(game, target_rank)
     return result
 
-@app.post("/simulate/")
+@app.post("/simulate/", response_model=SimulationResponse)
 def simulate_gacha_post(gacha_request: Gacha):
     result = gacha.simulate(gacha_request.game, gacha_request.target_rank)
     return result

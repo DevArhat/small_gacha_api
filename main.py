@@ -1,5 +1,6 @@
-from fastapi import FastAPI
-from pydantic import BaseModel, Field
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 import uvicorn
 from simulator import GachaSimulator
 import simulator.games
@@ -8,6 +9,15 @@ from typing import Optional
 
 app = FastAPI()
 gacha = GachaSimulator()
+
+@app.middleware("http")
+async def add_charset_middleware(request: Request, call_next):
+    response = await call_next(request)
+    # 응답이 JSON이면 무조건 charset=utf-8을 명시해서 보냄
+    if "application/json" in response.headers.get("content-type", ""):
+        response.headers["content-type"] = "application/json; charset=utf-8"
+    return response
+
 
 class PullResult(BaseModel):
     pickup_6: int = 0 

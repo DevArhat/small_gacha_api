@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import uvicorn
 from simulator import GachaSimulator
 import simulator.games
@@ -9,6 +9,30 @@ from typing import Optional
 app = FastAPI()
 gacha = GachaSimulator()
 
+class PullResult(BaseModel):
+    pickup_6: int = 0 
+    other_6: int = 0
+    
+    pickup_5: int = 0
+    other_5: int = 0
+
+    star_5: int = 0
+    
+    star_4: int = 0
+    
+    weapon_3: int = 0
+
+class SimulationResponse(BaseModel):
+    game: str
+    target_rank: int
+    total_pulls: int
+    raw: dict
+    after_exchange: dict
+    trucks: dict
+    pull_result: PullResult
+    crumbs: dict
+    logs: dict
+
 class Gacha(BaseModel):
     game: str
     target_rank: int
@@ -16,7 +40,15 @@ class Gacha(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"message": "GACHA SIMULATOR API"}
+    return {
+        "title": "Gacha Simulator API",
+        "description": "원신, 붕괴스타레일, 젠레스 존 제로, 명조, 엔드필드 가챠 시뮬레이터 API",
+        "usage": "자세한 사용법은 github README 또는 /docs를 참고하세요.",
+        "links": {
+            "documentation": "/docs",
+            "github": "https://github.com/DevArhat/small_gacha_api"
+        },
+    }
 
 @app.get("/list")
 def get_games_list_json():
@@ -42,17 +74,17 @@ def get_statistics(game: str = 'all', target_rank: Optional[int] = None):
 
 
 
-@app.get("/simulate")
+@app.get("/simulate", response_model=SimulationResponse)
 def simulate_gacha(game: str = 'hsr', target_rank: int = 0):
     result = gacha.simulate(game, target_rank)
     return result
 
-@app.get("/simulate/{game}/{target_rank}")
+@app.get("/simulate/{game}/{target_rank}", response_model=SimulationResponse)
 def simulate_gacha_get(game: str, target_rank: int):
     result = gacha.simulate(game, target_rank)
     return result
 
-@app.post("/simulate/")
+@app.post("/simulate/", response_model=SimulationResponse)
 def simulate_gacha_post(gacha_request: Gacha):
     result = gacha.simulate(gacha_request.game, gacha_request.target_rank)
     return result

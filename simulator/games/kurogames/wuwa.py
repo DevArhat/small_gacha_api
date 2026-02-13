@@ -1,6 +1,6 @@
 import random
 from simulator.games._base import Game
-from simulator.games.kurogames import arrange_stats
+from simulator.games.kurogames import arrange_stats, init_stats
 
 # 기본확률 0.8%
 # 66회부터 확률 증가
@@ -36,39 +36,10 @@ class WutheringWaves(Game):
         target_rank = max(0, min(target_rank, 6))
             
         target_copies = target_rank + 1
-        stats = {"game": self.game_name,
-                "target_rank": target_rank,
-                "total_pulls": 0,
-                "raw":{
-                    "pulls":0,
-                    "cost":0,
-                    },
-                "after_exchange":{
-                    "pulls":0,
-                    "cost":0,
-                    },
-                "trucks":{
-                    "raw": 0,
-                    "after_exchange": 0,
-                    "raw_cost": 0,
-                    "after_exchange_cost": 0,
-                    },
-                "pull_result":{
-                    "pickup_5": 0,
-                    "other_5": 0,
-                    "4_star": 0,
-                    "weapon_3": 0,
-                    },
-                "crumbs": {
-                    "total": 0,
-                    "tickets_changed": 0,
-                    "remaining": 0,
-                    },
-                "logs": {
-                    "log": [],
-                    "target": [] 
-                    }
-                }
+        stats = init_stats()
+        
+        stats['game'] = self.game_name
+        stats['target_rank'] = target_rank
         
         stack_5 = 0
         stack_4 = 0
@@ -135,7 +106,7 @@ class WutheringWaves(Game):
             # 25% 확률로 무기 떠서 3개만 나오고
             # 대충 그렇게 구성
             if stack_4 >= 10 or curr_random < 0.06:
-                stats["pull_result"]["4_star"] += 1
+                stats["pull_result"]["star_4"] += 1
                 stats["crumbs"]["total"] += 8
                 stack_4 = 0
                 if guaranteed_4 or random.choice([True, False]):

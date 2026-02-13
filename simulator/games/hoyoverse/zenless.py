@@ -109,7 +109,7 @@ class ZenlessZoneZero(Game):
                 if random.random() < 0.25:
                     stats["crumbs"]["total"] -= 12
                 continue
-            # 나머지는 그냥 '엔진'으로 처리s
+            # 나머지는 그냥 '엔진'으로 처리
             stats["pull_result"]["weapon_3"] += 1
                 
         return arrange_stats(stats, 20)

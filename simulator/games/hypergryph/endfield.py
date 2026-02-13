@@ -41,6 +41,7 @@ class Endfield(Game):
                     emergency_rnd = random.random()
                     
                     if emergency_rnd < 0.008:
+                        emergency_5star = True
                         if random.choice([True, False]):
                             stats["pull_result"]["pickup_6"] += 1
                             # 외부 스택과 완전 무관함

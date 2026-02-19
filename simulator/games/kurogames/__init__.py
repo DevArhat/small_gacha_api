@@ -21,7 +21,7 @@ _STATS = {"game": "",
         "pull_result":{
             "pickup_5": 0,
             "other_5": 0,
-            "4_star": 0,
+            "star_4": 0,
             "weapon_3": 0,
             },
         "crumbs": {
@@ -49,7 +49,7 @@ def arrange_stats(stats: dict, change_rate: int) -> dict:
     
     stats['raw']['cost'] = math.ceil(stats['raw']['pulls'] * COST_PER_PULL)
             
-    stats['after_exchange']['pulls'] = stats['raw']['pulls'] - payback_tickets
+    stats['after_exchange']['pulls'] = max(1, stats['raw']['pulls'] - payback_tickets)
     stats['after_exchange']['cost'] = math.ceil(stats['after_exchange']['pulls'] * COST_PER_PULL)
     
     stats['trucks']['raw'] = math.ceil(stats['raw']['pulls'] / PULLS_PER_TRUCK)

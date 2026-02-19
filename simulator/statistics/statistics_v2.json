@@ -1,0 +1,352 @@
+{
+  "gen": {
+    "0": {
+      "max": { "pulls": 171, "cost": 362892, "trucks": 4 },
+      "top_10": { "pulls": 155, "cost": 325189, "trucks": 3 },
+      "top_30": { "pulls": 114, "cost": 240357, "trucks": 3 },
+      "median": { "pulls": 80, "cost": 169664, "trucks": 2 },
+      "average": { "pulls": 91.94, "cost": 194096.55, "trucks": 2.13 },
+      "bottom_30": { "pulls": 76, "cost": 162595, "trucks": 2 },
+      "bottom_10": { "pulls": 33, "cost": 70694, "trucks": 1 },
+      "min": { "pulls": 1, "cost": 2357, "trucks": 1 }
+    },
+    "1": {
+      "max": { "pulls": 330, "cost": 695149, "trucks": 6 },
+      "top_10": { "pulls": 257, "cost": 530199, "trucks": 5 },
+      "top_30": { "pulls": 226, "cost": 466575, "trucks": 4 },
+      "median": { "pulls": 180, "cost": 372317, "trucks": 4 },
+      "average": { "pulls": 183.98, "cost": 381800.08, "trucks": 3.70 },
+      "bottom_30": { "pulls": 154, "cost": 320476, "trucks": 3 },
+      "bottom_10": { "pulls": 104, "cost": 214436, "trucks": 2 },
+      "min": { "pulls": 2, "cost": 2357, "trucks": 1 }
+    },
+    "2": {
+      "max": { "pulls": 409, "cost": 853030, "trucks": 8 },
+      "top_10": { "pulls": 359, "cost": 742278, "trucks": 7 },
+      "top_30": { "pulls": 310, "cost": 640951, "trucks": 6 },
+      "median": { "pulls": 272, "cost": 560832, "trucks": 5 },
+      "average": { "pulls": 269.76, "cost": 556677.18, "trucks": 5.18 },
+      "bottom_30": { "pulls": 235, "cost": 485426, "trucks": 5 },
+      "bottom_10": { "pulls": 179, "cost": 367604, "trucks": 4 },
+      "min": { "pulls": 6, "cost": 2357, "trucks": 1 }
+    },
+    "3": {
+      "max": { "pulls": 568, "cost": 1180575, "trucks": 10 },
+      "top_10": { "pulls": 464, "cost": 959070, "trucks": 9 },
+      "top_30": { "pulls": 404, "cost": 831822, "trucks": 7 },
+      "median": { "pulls": 364, "cost": 749347, "trucks": 7 },
+      "average": { "pulls": 361.86, "cost": 744482.60, "trucks": 6.75 },
+      "bottom_30": { "pulls": 320, "cost": 657446, "trucks": 6 },
+      "bottom_10": { "pulls": 258, "cost": 527842, "trucks": 5 },
+      "min": { "pulls": 24, "cost": 37703, "trucks": 1 }
+    },
+    "4": {
+      "max": { "pulls": 728, "cost": 1515189, "trucks": 13 },
+      "top_10": { "pulls": 556, "cost": 1145228, "trucks": 10 },
+      "top_30": { "pulls": 497, "cost": 1022694, "trucks": 9 },
+      "median": { "pulls": 454, "cost": 930793, "trucks": 8 },
+      "average": { "pulls": 449.52, "cost": 923242.13, "trucks": 8.25 },
+      "bottom_30": { "pulls": 405, "cost": 831822, "trucks": 7 },
+      "bottom_10": { "pulls": 337, "cost": 688080, "trucks": 6 },
+      "min": { "pulls": 48, "cost": 84832, "trucks": 1 }
+    },
+    "5": {
+      "max": { "pulls": 810, "cost": 1666000, "trucks": 14 },
+      "top_10": { "pulls": 658, "cost": 1354951, "trucks": 12 },
+      "top_30": { "pulls": 592, "cost": 1215921, "trucks": 11 },
+      "median": { "pulls": 543, "cost": 1114595, "trucks": 10 },
+      "average": { "pulls": 539.89, "cost": 1107483.42, "trucks": 9.80 },
+      "bottom_30": { "pulls": 492, "cost": 1008555, "trucks": 9 },
+      "bottom_10": { "pulls": 417, "cost": 853030, "trucks": 8 },
+      "min": { "pulls": 108, "cost": 200298, "trucks": 2 }
+    },
+    "6": {
+      "max": { "pulls": 953, "cost": 1972337, "trucks": 17 },
+      "top_10": { "pulls": 755, "cost": 1552892, "trucks": 14 },
+      "top_30": { "pulls": 684, "cost": 1404436, "trucks": 12 },
+      "median": { "pulls": 632, "cost": 1296040, "trucks": 11 },
+      "average": { "pulls": 628.77, "cost": 1288741.53, "trucks": 11.33 },
+      "bottom_30": { "pulls": 578, "cost": 1182931, "trucks": 10 },
+      "bottom_10": { "pulls": 498, "cost": 1015624, "trucks": 9 },
+      "min": { "pulls": 125, "cost": 223862, "trucks": 2 }
+    }
+  },
+  "wuwa": {
+    "0": {
+      "max": { "pulls": 155, "cost": 315763, "trucks": 3 },
+      "top_10": { "pulls": 140, "cost": 280416, "trucks": 3 },
+      "top_30": { "pulls": 100, "cost": 195585, "trucks": 2 },
+      "median": { "pulls": 73, "cost": 148456, "trucks": 2 },
+      "average": { "pulls": 81.16, "cost": 161745.67, "trucks": 1.99 },
+      "bottom_30": { "pulls": 68, "cost": 136674, "trucks": 2 },
+      "bottom_10": { "pulls": 26, "cost": 49486, "trucks": 1 },
+      "min": { "pulls": 1, "cost": 2357, "trucks": 1 }
+    },
+    "1": {
+      "max": { "pulls": 300, "cost": 695149, "trucks": 6 },
+      "top_10": { "pulls": 231, "cost": 454793, "trucks": 4 },
+      "top_30": { "pulls": 197, "cost": 391169, "trucks": 4 },
+      "median": { "pulls": 158, "cost": 311050, "trucks": 3 },
+      "average": { "pulls": 162.29, "cost": 322808.98, "trucks": 3.20 },
+      "bottom_30": { "pulls": 136, "cost": 270991, "trucks": 3 },
+      "bottom_10": { "pulls": 89, "cost": 174377, "trucks": 2 },
+      "min": { "pulls": 2, "cost": 2357, "trucks": 1 }
+    },
+    "2": {
+      "max": { "pulls": 366, "cost": 850674, "trucks": 8 },
+      "top_10": { "pulls": 290, "cost": 671585, "trucks": 6 },
+      "top_30": { "pulls": 269, "cost": 567901, "trucks": 5 },
+      "median": { "pulls": 239, "cost": 480713, "trucks": 5 },
+      "average": { "pulls": 231.18, "cost": 485603.15, "trucks": 4.55 },
+      "bottom_30": { "pulls": 208, "cost": 414733, "trucks": 4 },
+      "bottom_10": { "pulls": 155, "cost": 306337, "trucks": 3 },
+      "min": { "pulls": 8, "cost": 4713, "trucks": 1 }
+    },
+    "3": {
+      "max": { "pulls": 445, "cost": 996773, "trucks": 9 },
+      "top_10": { "pulls": 340, "cost": 782337, "trucks": 7 },
+      "top_30": { "pulls": 304, "cost": 702218, "trucks": 6 },
+      "median": { "pulls": 285, "cost": 648020, "trucks": 6 },
+      "average": { "pulls": 282.05, "cost": 627769.63, "trucks": 5.75 },
+      "bottom_30": { "pulls": 263, "cost": 572614, "trucks": 5 },
+      "bottom_10": { "pulls": 222, "cost": 443010, "trucks": 4 },
+      "min": { "pulls": 20, "cost": 25921, "trucks": 1 }
+    },
+    "4": {
+      "max": { "pulls": 584, "cost": 1362020, "trucks": 12 },
+      "top_10": { "pulls": 426, "cost": 952000, "trucks": 8 },
+      "top_30": { "pulls": 365, "cost": 831822, "trucks": 7 },
+      "median": { "pulls": 330, "cost": 761129, "trucks": 7 },
+      "average": { "pulls": 338.17, "cost": 764768.00, "trucks": 6.92 },
+      "bottom_30": { "pulls": 301, "cost": 695149, "trucks": 6 },
+      "bottom_10": { "pulls": 264, "cost": 589109, "trucks": 5 },
+      "min": { "pulls": 44, "cost": 75406, "trucks": 1 }
+    },
+    "5": {
+      "max": { "pulls": 646, "cost": 1519901, "trucks": 13 },
+      "top_10": { "pulls": 516, "cost": 1135802, "trucks": 10 },
+      "top_30": { "pulls": 452, "cost": 1001486, "trucks": 9 },
+      "median": { "pulls": 405, "cost": 909585, "trucks": 8 },
+      "average": { "pulls": 407.22, "cost": 913880.72, "trucks": 8.18 },
+      "bottom_30": { "pulls": 359, "cost": 817684, "trucks": 7 },
+      "bottom_10": { "pulls": 304, "cost": 702218, "trucks": 6 },
+      "min": { "pulls": 60, "cost": 106040, "trucks": 1 }
+    },
+    "6": {
+      "max": { "pulls": 723, "cost": 1661288, "trucks": 14 },
+      "top_10": { "pulls": 573, "cost": 1319604, "trucks": 12 },
+      "top_30": { "pulls": 528, "cost": 1175862, "trucks": 10 },
+      "median": { "pulls": 486, "cost": 1069822, "trucks": 9 },
+      "average": { "pulls": 476.22, "cost": 1069960.66, "trucks": 9.49 },
+      "bottom_30": { "pulls": 435, "cost": 968496, "trucks": 9 },
+      "bottom_10": { "pulls": 363, "cost": 824753, "trucks": 7 },
+      "min": { "pulls": 129, "cost": 242713, "trucks": 3 }
+    }
+  },
+  "hsr": {
+    "0": {
+      "max": { "pulls": 170, "cost": 367604, "trucks": 4 },
+      "top_10": { "pulls": 155, "cost": 325189, "trucks": 3 },
+      "top_30": { "pulls": 119, "cost": 249783, "trucks": 3 },
+      "median": { "pulls": 80, "cost": 172020, "trucks": 2 },
+      "average": { "pulls": 93.39, "cost": 197051.66, "trucks": 2.15 },
+      "bottom_30": { "pulls": 76, "cost": 162595, "trucks": 2 },
+      "bottom_10": { "pulls": 34, "cost": 73050, "trucks": 1 },
+      "min": { "pulls": 1, "cost": 2357, "trucks": 1 }
+    },
+    "1": {
+      "max": { "pulls": 333, "cost": 697505, "trucks": 6 },
+      "top_10": { "pulls": 265, "cost": 549050, "trucks": 5 },
+      "top_30": { "pulls": 228, "cost": 473644, "trucks": 4 },
+      "median": { "pulls": 183, "cost": 379387, "trucks": 4 },
+      "average": { "pulls": 186.80, "cost": 387525.61, "trucks": 3.75 },
+      "bottom_30": { "pulls": 155, "cost": 322832, "trucks": 3 },
+      "bottom_10": { "pulls": 105, "cost": 216793, "trucks": 2 },
+      "min": { "pulls": 2, "cost": 2357, "trucks": 1 }
+    },
+    "2": {
+      "max": { "pulls": 489, "cost": 1015624, "trucks": 9 },
+      "top_10": { "pulls": 383, "cost": 791763, "trucks": 7 },
+      "top_30": { "pulls": 317, "cost": 655090, "trucks": 6 },
+      "median": { "pulls": 281, "cost": 579684, "trucks": 5 },
+      "average": { "pulls": 280.27, "cost": 578127.85, "trucks": 5.36 },
+      "bottom_30": { "pulls": 238, "cost": 492496, "trucks": 5 },
+      "bottom_10": { "pulls": 182, "cost": 374674, "trucks": 4 },
+      "min": { "pulls": 9, "cost": 11783, "trucks": 1 }
+    },
+    "3": {
+      "max": { "pulls": 642, "cost": 1331387, "trucks": 12 },
+      "top_10": { "pulls": 483, "cost": 994416, "trucks": 9 },
+      "top_30": { "pulls": 419, "cost": 862456, "trucks": 8 },
+      "median": { "pulls": 375, "cost": 770555, "trucks": 7 },
+      "average": { "pulls": 373.69, "cost": 768605.56, "trucks": 6.95 },
+      "bottom_30": { "pulls": 326, "cost": 671585, "trucks": 6 },
+      "bottom_10": { "pulls": 262, "cost": 537268, "trucks": 5 },
+      "min": { "pulls": 23, "cost": 30634, "trucks": 1 }
+    },
+    "4": {
+      "max": { "pulls": 801, "cost": 1656575, "trucks": 14 },
+      "top_10": { "pulls": 593, "cost": 1220634, "trucks": 11 },
+      "top_30": { "pulls": 519, "cost": 1067466, "trucks": 9 },
+      "median": { "pulls": 467, "cost": 959070, "trucks": 9 },
+      "average": { "pulls": 467.09, "cost": 959059.33, "trucks": 8.55 },
+      "bottom_30": { "pulls": 415, "cost": 850674, "trucks": 8 },
+      "bottom_10": { "pulls": 342, "cost": 699862, "trucks": 6 },
+      "min": { "pulls": 65, "cost": 122535, "trucks": 2 }
+    },
+    "5": {
+      "max": { "pulls": 949, "cost": 1960555, "trucks": 17 },
+      "top_10": { "pulls": 697, "cost": 1432713, "trucks": 13 },
+      "top_30": { "pulls": 617, "cost": 1267763, "trucks": 11 },
+      "median": { "pulls": 560, "cost": 1149941, "trucks": 10 },
+      "average": { "pulls": 560.64, "cost": 1149829.67, "trucks": 10.16 },
+      "bottom_30": { "pulls": 504, "cost": 1032119, "trucks": 9 },
+      "bottom_10": { "pulls": 425, "cost": 867169, "trucks": 8 },
+      "min": { "pulls": 112, "cost": 212080, "trucks": 2 }
+    },
+    "6": {
+      "max": { "pulls": 1096, "cost": 2257466, "trucks": 19 },
+      "top_10": { "pulls": 801, "cost": 1644793, "trucks": 14 },
+      "top_30": { "pulls": 715, "cost": 1465703, "trucks": 13 },
+      "median": { "pulls": 654, "cost": 1340812, "trucks": 12 },
+      "average": { "pulls": 654.22, "cost": 1340635.92, "trucks": 11.76 },
+      "bottom_30": { "pulls": 593, "cost": 1213565, "trucks": 11 },
+      "bottom_10": { "pulls": 507, "cost": 1034476, "trucks": 9 },
+      "min": { "pulls": 155, "cost": 294555, "trucks": 3 }
+    }
+  },
+  "zzz": {
+    "0": {
+      "max": { "pulls": 170, "cost": 365248, "trucks": 4 },
+      "top_10": { "pulls": 155, "cost": 318119, "trucks": 3 },
+      "top_30": { "pulls": 119, "cost": 242713, "trucks": 3 },
+      "median": { "pulls": 80, "cost": 167307, "trucks": 2 },
+      "average": { "pulls": 93.48, "cost": 192792.85, "trucks": 2.14 },
+      "bottom_30": { "pulls": 76, "cost": 157882, "trucks": 2 },
+      "bottom_10": { "pulls": 34, "cost": 70694, "trucks": 1 },
+      "min": { "pulls": 1, "cost": 2357, "trucks": 1 }
+    },
+    "1": {
+      "max": { "pulls": 330, "cost": 681010, "trucks": 6 },
+      "top_10": { "pulls": 265, "cost": 534911, "trucks": 5 },
+      "top_30": { "pulls": 228, "cost": 461862, "trucks": 4 },
+      "median": { "pulls": 183, "cost": 369961, "trucks": 4 },
+      "average": { "pulls": 186.79, "cost": 378737.68, "trucks": 3.65 },
+      "bottom_30": { "pulls": 155, "cost": 315763, "trucks": 3 },
+      "bottom_10": { "pulls": 105, "cost": 212080, "trucks": 2 },
+      "min": { "pulls": 2, "cost": 2357, "trucks": 1 }
+    },
+    "2": {
+      "max": { "pulls": 495, "cost": 1020337, "trucks": 9 },
+      "top_10": { "pulls": 383, "cost": 772911, "trucks": 7 },
+      "top_30": { "pulls": 317, "cost": 640951, "trucks": 6 },
+      "median": { "pulls": 280, "cost": 565545, "trucks": 5 },
+      "average": { "pulls": 280.26, "cost": 564999.77, "trucks": 5.25 },
+      "bottom_30": { "pulls": 238, "cost": 480713, "trucks": 5 },
+      "bottom_10": { "pulls": 182, "cost": 365248, "trucks": 4 },
+      "min": { "pulls": 10, "cost": 14139, "trucks": 1 }
+    },
+    "3": {
+      "max": { "pulls": 643, "cost": 1310179, "trucks": 12 },
+      "top_10": { "pulls": 483, "cost": 973208, "trucks": 9 },
+      "top_30": { "pulls": 419, "cost": 843604, "trucks": 8 },
+      "median": { "pulls": 375, "cost": 754060, "trucks": 7 },
+      "average": { "pulls": 373.91, "cost": 751619.27, "trucks": 6.81 },
+      "bottom_30": { "pulls": 327, "cost": 655090, "trucks": 6 },
+      "bottom_10": { "pulls": 262, "cost": 523129, "trucks": 5 },
+      "min": { "pulls": 30, "cost": 47129, "trucks": 1 }
+    },
+    "4": {
+      "max": { "pulls": 800, "cost": 1616515, "trucks": 14 },
+      "top_10": { "pulls": 593, "cost": 1192357, "trucks": 11 },
+      "top_30": { "pulls": 519, "cost": 1041545, "trucks": 9 },
+      "median": { "pulls": 467, "cost": 937862, "trucks": 8 },
+      "average": { "pulls": 467.38, "cost": 937896.77, "trucks": 8.38 },
+      "bottom_30": { "pulls": 415, "cost": 831822, "trucks": 7 },
+      "bottom_10": { "pulls": 343, "cost": 685723, "trucks": 6 },
+      "min": { "pulls": 74, "cost": 136674, "trucks": 2 }
+    },
+    "5": {
+      "max": { "pulls": 952, "cost": 1922852, "trucks": 17 },
+      "top_10": { "pulls": 698, "cost": 1402080, "trucks": 12 },
+      "top_30": { "pulls": 617, "cost": 1239486, "trucks": 11 },
+      "median": { "pulls": 560, "cost": 1124020, "trucks": 10 },
+      "average": { "pulls": 560.70, "cost": 1123848.60, "trucks": 9.94 },
+      "bottom_30": { "pulls": 504, "cost": 1008555, "trucks": 9 },
+      "bottom_10": { "pulls": 424, "cost": 845961, "trucks": 8 },
+      "min": { "pulls": 96, "cost": 181446, "trucks": 2 }
+    },
+    "6": {
+      "max": { "pulls": 1104, "cost": 2233901, "trucks": 19 },
+      "top_10": { "pulls": 801, "cost": 1607090, "trucks": 14 },
+      "top_30": { "pulls": 714, "cost": 1430357, "trucks": 13 },
+      "median": { "pulls": 654, "cost": 1307822, "trucks": 11 },
+      "average": { "pulls": 653.91, "cost": 1309596.93, "trucks": 11.50 },
+      "bottom_30": { "pulls": 593, "cost": 1187644, "trucks": 10 },
+      "bottom_10": { "pulls": 507, "cost": 1010911, "trucks": 9 },
+      "min": { "pulls": 158, "cost": 296911, "trucks": 3 }
+    }
+  },
+  "end": {
+    "0": {
+      "max": { "pulls": 120, "cost": 306000, "trucks": 2 },
+      "top_10": { "pulls": 120, "cost": 306000, "trucks": 2 },
+      "top_30": { "pulls": 120, "cost": 306000, "trucks": 2 },
+      "median": { "pulls": 72, "cost": 183600, "trucks": 2 },
+      "average": { "pulls": 79.20, "cost": 201964.96, "trucks": 1.75 },
+      "bottom_30": { "pulls": 67, "cost": 170850, "trucks": 2 },
+      "bottom_10": { "pulls": 27, "cost": 68850, "trucks": 1 },
+      "min": { "pulls": 1, "cost": 2550, "trucks": 1 }
+    },
+    "1": {
+      "max": { "pulls": 240, "cost": 612000, "trucks": 4 },
+      "top_10": { "pulls": 240, "cost": 612000, "trucks": 4 },
+      "top_30": { "pulls": 207, "cost": 527850, "trucks": 4 },
+      "median": { "pulls": 172, "cost": 438600, "trucks": 3 },
+      "average": { "pulls": 167.68, "cost": 427573.12, "trucks": 3.22 },
+      "bottom_30": { "pulls": 137, "cost": 349350, "trucks": 3 },
+      "bottom_10": { "pulls": 86, "cost": 219300, "trucks": 2 },
+      "min": { "pulls": 2, "cost": 5100, "trucks": 1 }
+    },
+    "2": {
+      "max": { "pulls": 480, "cost": 1224000, "trucks": 8 },
+      "top_10": { "pulls": 301, "cost": 767550, "trucks": 6 },
+      "top_30": { "pulls": 240, "cost": 612000, "trucks": 4 },
+      "median": { "pulls": 240, "cost": 612000, "trucks": 4 },
+      "average": { "pulls": 234.66, "cost": 598372.68, "trucks": 4.19 },
+      "bottom_30": { "pulls": 218, "cost": 555900, "trucks": 4 },
+      "bottom_10": { "pulls": 158, "cost": 402900, "trucks": 3 },
+      "min": { "pulls": 6, "cost": 15300, "trucks": 1 }
+    },
+    "3": {
+      "max": { "pulls": 720, "cost": 1836000, "trucks": 12 },
+      "top_10": { "pulls": 456, "cost": 1162800, "trucks": 8 },
+      "top_30": { "pulls": 334, "cost": 851700, "trucks": 6 },
+      "median": { "pulls": 270, "cost": 688500, "trucks": 5 },
+      "average": { "pulls": 303.18, "cost": 773115.99, "trucks": 5.38 },
+      "bottom_30": { "pulls": 240, "cost": 612000, "trucks": 4 },
+      "bottom_10": { "pulls": 234, "cost": 596700, "trucks": 4 },
+      "min": { "pulls": 10, "cost": 25500, "trucks": 1 }
+    },
+    "4": {
+      "max": { "pulls": 960, "cost": 2448000, "trucks": 16 },
+      "top_10": { "pulls": 480, "cost": 1224000, "trucks": 8 },
+      "top_30": { "pulls": 456, "cost": 1162800, "trucks": 8 },
+      "median": { "pulls": 377, "cost": 961350, "trucks": 7 },
+      "average": { "pulls": 380.53, "cost": 970350.36, "trucks": 6.70 },
+      "bottom_30": { "pulls": 312, "cost": 795600, "trucks": 6 },
+      "bottom_10": { "pulls": 240, "cost": 612000, "trucks": 4 },
+      "min": { "pulls": 30, "cost": 76500, "trucks": 1 }
+    },
+    "5": {
+      "max": { "pulls": 1200, "cost": 3060000, "trucks": 20 },
+      "top_10": { "pulls": 598, "cost": 1524900, "trucks": 10 },
+      "top_30": { "pulls": 480, "cost": 1224000, "trucks": 8 },
+      "median": { "pulls": 480, "cost": 1224000, "trucks": 8 },
+      "average": { "pulls": 456.79, "cost": 1164824.34, "trucks": 7.95 },
+      "bottom_30": { "pulls": 407, "cost": 1037850, "trucks": 7 },
+      "bottom_10": { "pulls": 315, "cost": 803250, "trucks": 6 },
+      "min": { "pulls": 85, "cost": 216750, "trucks": 2 }
+    }
+  }
+}

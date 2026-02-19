@@ -160,8 +160,8 @@ logs -> target = 픽업이 뜬 회차<br>
     "cost": 1116900
   },
   "after_exchange": {
-    "pulls": 0,
-    "cost": 0
+    "pulls": 438,
+    "cost": 1116900
   },
   "trucks": {
     "raw": 8,
@@ -202,7 +202,7 @@ logs -> target = 픽업이 뜬 회차<br>
 raw -> pulls = 총 뽑기 횟수 (total_pulls랑 같은 값)<br>
 raw -> cost = 뽑기 비용 (뽑기 횟수 기준 추산)
 
-<b>after_exchange -> 0 고정</b> (뽑기 부산물이 그냥 무기뽑기권이고 캐릭뽑기권 환급식이 아니다보니...)
+<b>after_exchange -> raw와 동일한 값 반환</b> (뽑기 부산물이 그냥 무기뽑기권이고 캐릭뽑기권 환급식이 아니다보니...)
 
 trucks -> raw, raw_cost = 총 뽑기 횟수 기준 필요 트럭 갯수, 트럭 기준 비용<br>
 trucks -> after_exchange, after_exchange_cost : 0 고정 (after_exchange의 pulls 및 cost와 동일한 이유)<br>

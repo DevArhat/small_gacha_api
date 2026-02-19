@@ -66,7 +66,6 @@ class ZenlessZoneZero(Game):
             # 5성 획득 판정
             if stack_5 == 90 or curr_random < rate_5:
                 stack_5 = 0
-                stats["crumbs"]['total'] += 40
                 is_pickup = False
                 
                 if guaranteed:

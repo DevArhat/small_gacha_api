@@ -51,8 +51,8 @@ def end_arrange_stats(stats: dict) -> dict:
     
     stats['raw']['cost'] = math.ceil(stats['raw']['pulls'] * COST_PER_PULL)
             
-    stats['after_exchange']['pulls'] = 0
-    stats['after_exchange']['cost'] = 0
+    stats['after_exchange']['pulls'] = stats['raw']['pulls']
+    stats['after_exchange']['cost'] = stats['raw']['cost']
     
     stats['trucks']['raw'] = math.ceil(stats['raw']['pulls'] / PULLS_PER_TRUCK)
     stats['trucks']['after_exchange'] = math.ceil(stats['after_exchange']['pulls'] / PULLS_PER_TRUCK)

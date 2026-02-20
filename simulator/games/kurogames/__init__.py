@@ -35,9 +35,46 @@ _STATS = {"game": "",
             }
         }
 
+_V2_STATS = {"game": "",
+        "target_rank": 0,
+        "total_pulls": 0,
+        "raw":{
+            "pulls":0,
+            "cost":0,
+            },
+        "after_exchange":{
+            "pulls":0,
+            "cost":0,
+            },
+        "trucks":{
+            "raw": 0,
+            "after_exchange": 0,
+            "raw_cost": 0,
+            "after_exchange_cost": 0,
+            },
+        "pull_result":{
+            "pickup_5": 0,
+            "other_5": 0,
+            "star_4": 0,
+            "weapon_3": 0,
+            },
+        "crumbs": {
+            "total": 0,
+            "tickets_changed": 0,
+            "remaining": 0,
+            },
+        "logs": {
+            "target": [],
+            "other": [],
+            "total": []
+            }
+        }
 
 def init_stats() -> dict:
     return copy.deepcopy(_STATS)
+
+def v2_init_stats() -> dict:
+    return copy.deepcopy(_V2_STATS)
     
 def arrange_stats(stats: dict, change_rate: int) -> dict:
     stats['total_pulls'] = stats['raw']['pulls']

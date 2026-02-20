@@ -1,41 +1,45 @@
 from fastapi import FastAPI
-from pydantic import BaseModel, Field
 import uvicorn
+
+from main_v2 import router as v2_router
+
 from simulator import GachaSimulator
-import simulator.games
+from simulator.games import GAMES_CONFIG
 from simulator.statistics import get_gacha_statistics
 from typing import Optional
+from models import SimulationResponse, Gacha
 
 app = FastAPI()
+app.include_router(v2_router)
 gacha = GachaSimulator()
 
-class PullResult(BaseModel):
-    pickup_6: int = 0 
-    other_6: int = 0
+# class PullResult(BaseModel):
+#     pickup_6: int = 0 
+#     other_6: int = 0
     
-    pickup_5: int = 0
-    other_5: int = 0
+#     pickup_5: int = 0
+#     other_5: int = 0
 
-    star_5: int = 0
+#     star_5: int = 0
     
-    star_4: int = 0
+#     star_4: int = 0
     
-    weapon_3: int = 0
+#     weapon_3: int = 0
 
-class SimulationResponse(BaseModel):
-    game: str
-    target_rank: int
-    total_pulls: int
-    raw: dict
-    after_exchange: dict
-    trucks: dict
-    pull_result: PullResult
-    crumbs: dict
-    logs: dict
+# class SimulationResponse(BaseModel):
+#     game: str
+#     target_rank: int
+#     total_pulls: int
+#     raw: dict
+#     after_exchange: dict
+#     trucks: dict
+#     pull_result: PullResult
+#     crumbs: dict
+#     logs: dict
 
-class Gacha(BaseModel):
-    game: str
-    target_rank: int
+# class Gacha(BaseModel):
+#     game: str
+#     target_rank: int
     
 
 @app.get("/")
@@ -53,7 +57,7 @@ def read_root():
 @app.get("/list")
 def get_games_list_json():
     games_data = []
-    for display_name, (_, aliases) in simulator.games.GAMES_CONFIG.items():
+    for display_name, (_, aliases) in GAMES_CONFIG.items():
         games_data.append({
             "name": display_name,
             "aliases": aliases,
@@ -63,8 +67,8 @@ def get_games_list_json():
 
 @app.get("/list/aliases")
 def get_games_list():
-    keys = simulator.games.GAMES_CONFIG.keys()
-    values = [simulator.games.GAMES_CONFIG[key][1] for key in keys]
+    keys = GAMES_CONFIG.keys()
+    values = [GAMES_CONFIG[key][1] for key in keys]
     return {"games": dict(zip(keys, values))}
 
 @app.get("/statistics")

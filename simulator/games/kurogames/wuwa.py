@@ -1,6 +1,6 @@
 import random
 from simulator.games._base import Game
-from simulator.games.kurogames import arrange_stats, init_stats
+from simulator.games.kurogames import arrange_stats, init_stats, v2_init_stats
 
 # 기본확률 0.8%
 # 66회부터 확률 증가
@@ -98,6 +98,94 @@ class WutheringWaves(Game):
                     stats['pull_result']["other_5"] += 1
                     stats["crumbs"]["total"] += 30
                     stats["logs"]["log"].append(f"[Pull {stats["raw"]["pulls"]}] 5★ 상시 획득 (픽뚫)")
+                continue
+            
+            # 4성: 6.0% 확률, 10회차 확정
+            # 그냥 호요버스겜쪽에 세팅한것처럼
+            # 4성캐 다 풀돌이라 치고 일단 8개 튀어나오고
+            # 25% 확률로 무기 떠서 3개만 나오고
+            # 대충 그렇게 구성
+            if stack_4 >= 10 or curr_random < 0.06:
+                stats["pull_result"]["star_4"] += 1
+                stats["crumbs"]["total"] += 8
+                stack_4 = 0
+                if guaranteed_4 or random.choice([True, False]):
+                     guaranteed_4 = False
+                else:
+                    guaranteed_4 = True
+                    if random.choice([True, False]):
+                        stats["crumbs"]["total"] -= 5
+                    
+                continue
+            
+            # 나머지는 3성 무기
+            stats['pull_result']["weapon_3"] += 1
+        
+        return arrange_stats(stats, 8)
+
+    def v2_run_simulation(self, target_rank):
+        # 0보다 작거나 6보다 큰 타겟 돌파가 들어오면 0 or 6돌로 강제 고정
+        target_rank = max(0, min(target_rank, 6))
+            
+        target_copies = target_rank + 1
+        stats = v2_init_stats()
+        
+        stats['game'] = self.game_name
+        stats['target_rank'] = target_rank
+        
+        stack_5 = 0
+        stack_4 = 0
+        crumbs_exchanged = 0
+        guaranteed = False
+        guaranteed_4 = False
+        
+        while stats["pull_result"]["pickup_5"] < target_copies:
+            
+            if stats['crumbs']['total'] >= 360 and crumbs_exchanged < 2 and not("미교환" in self.game_name):
+                stats['pull_result']['pickup_5'] += 1
+                stats['crumbs']['total'] -= 360
+                crumbs_exchanged += 1
+                stats['logs']['target'].append(f"산호{crumbs_exchanged}")
+                stats['logs']['total'].append(f"산호{crumbs_exchanged}")
+                if stats['pull_result']['pickup_5'] >= target_copies:
+                    break
+                
+            stats["raw"]["pulls"] += 1
+            stack_5 += 1
+            stack_4 += 1
+            
+            curr_random = random.random()
+            
+            rate_5 = 0.008
+            if 66 <= stack_5 < 71:
+                rate_5 = 0.008 + (stack_5 - 65) * 0.04
+            elif 71 <= stack_5 < 76:
+                rate_5 = 0.208 + (stack_5 - 70) * 0.08
+            elif 76 <= stack_5 < 80:
+                rate_5 = 0.608 + (stack_5 - 75) * 0.1
+            
+            if stack_5 == 80 or curr_random < rate_5:
+                stack_5 = 0
+                stack_4 = 0
+                stats["crumbs"]["total"] += 15
+                is_pickup = False
+                if guaranteed:
+                    is_pickup = True
+                    guaranteed = False
+                else:
+                    if random.choice([True, False]):
+                        is_pickup = True
+                    else:
+                        guaranteed = True
+                
+                stats["logs"]["total"].append(f"{stats["raw"]["pulls"]}")
+                if is_pickup:
+                    stats["pull_result"]["pickup_5"] += 1
+                    stats["logs"]["target"].append(f"{stats["raw"]["pulls"]}")
+                else:
+                    stats['pull_result']["other_5"] += 1
+                    stats["crumbs"]["total"] += 30
+                    stats["logs"]["other"].append(f"{stats["raw"]["pulls"]}")
                 continue
             
             # 4성: 6.0% 확률, 10회차 확정

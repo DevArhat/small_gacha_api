@@ -1,6 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 import uvicorn
-
 from main_v2 import router as v2_router
 
 from simulator import GachaSimulator
@@ -13,34 +12,13 @@ app = FastAPI()
 app.include_router(v2_router)
 gacha = GachaSimulator()
 
-# class PullResult(BaseModel):
-#     pickup_6: int = 0 
-#     other_6: int = 0
-    
-#     pickup_5: int = 0
-#     other_5: int = 0
-
-#     star_5: int = 0
-    
-#     star_4: int = 0
-    
-#     weapon_3: int = 0
-
-# class SimulationResponse(BaseModel):
-#     game: str
-#     target_rank: int
-#     total_pulls: int
-#     raw: dict
-#     after_exchange: dict
-#     trucks: dict
-#     pull_result: PullResult
-#     crumbs: dict
-#     logs: dict
-
-# class Gacha(BaseModel):
-#     game: str
-#     target_rank: int
-    
+@app.middleware("http")
+async def add_charset_middleware(request: Request, call_next):
+    response = await call_next(request)
+    # 응답이 JSON이면 무조건 charset=utf-8을 명시해서 보냄
+    if "application/json" in response.headers.get("content-type", ""):
+        response.headers["content-type"] = "application/json; charset=utf-8"
+    return response
 
 @app.get("/")
 def read_root():

@@ -165,9 +165,9 @@ logs -> target = 픽업이 뜬 회차<br>
   },
   "trucks": {
     "raw": 8,
-    "after_exchange": 0,
+    "after_exchange": 8,
     "raw_cost": 1224000,
-    "after_exchange_cost": 0
+    "after_exchange_cost": 1224000
   },
   "pull_result": {
     "pickup_6": 6,
@@ -205,7 +205,7 @@ raw -> cost = 뽑기 비용 (뽑기 횟수 기준 추산)
 <b>after_exchange -> raw와 동일한 값 반환</b> (뽑기 부산물이 그냥 무기뽑기권이고 캐릭뽑기권 환급식이 아니다보니...)
 
 trucks -> raw, raw_cost = 총 뽑기 횟수 기준 필요 트럭 갯수, 트럭 기준 비용<br>
-trucks -> after_exchange, after_exchange_cost : 0 고정 (after_exchange의 pulls 및 cost와 동일한 이유)<br>
+trucks -> after_exchange, after_exchange_cost : raw와 동일 (after_exchange의 pulls 및 cost와 동일한 이유)<br>
 ※ 인게임 말고 홈페이지에서 사면 153000원짜리 400오리지늄 상품 있음 그거기준임
 
 <b>crumbs 관련 필드 이름은 그대로지만 의미가 다르므로 주의</b><br>

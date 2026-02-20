@@ -197,9 +197,7 @@ class GenshinImpact(Game):
                             stats['pull_result']["pickup_5"] += 1
                             stats['logs']['target'].append(f"R{stats['raw']['pulls']}")
                             stats['logs']['total'].append(f"R{stats['raw']['pulls']}")
-                            if int(stats['pull_result']["pickup_5"]) == 1:
-                                pass
-                            else:
+                            if int(stats['pull_result']["pickup_5"]) != 1:
                                 stats["crumbs"]['total'] += 10
                         else:
                             stats['pull_result']["other_5"] += 1
@@ -209,10 +207,10 @@ class GenshinImpact(Game):
                             guaranteed = True
                         continue
                             
+                stats['logs']['total'].append(f"{stats['raw']['pulls']}")
                 if is_pickup:
                     stats['pull_result']["pickup_5"] += 1
                     stats['logs']['target'].append(f"{stats['raw']['pulls']}")
-                    stats['logs']['total'].append(f"{stats['raw']['pulls']}")
                     if int(stats['pull_result']["pickup_5"]) == 1:
                         pass
                     else:
@@ -220,7 +218,6 @@ class GenshinImpact(Game):
                 else:
                     stats['pull_result']["other_5"] += 1
                     stats['logs']['other'].append(f"{stats['raw']['pulls']}")
-                    stats['logs']['total'].append(f"{stats['raw']['pulls']}")
                     stats["crumbs"]['total'] += 10
                 continue
             

@@ -153,18 +153,15 @@ class HonkaiStarRail(Game):
                     else:
                         guaranteed = True
                 
+                stats["logs"]['total'].append(f"{stats['raw']["pulls"]}")
                 if is_pickup:
                     stats["logs"]['target'].append(f"{stats['raw']["pulls"]}")
-                    stats["logs"]['total'].append(f"{stats['raw']["pulls"]}")
                     stats["pull_result"]["pickup_5"] += 1
-                    if int(stats["pull_result"]["pickup_5"]) == 1:
-                        pass
-                    else:
+                    if int(stats["pull_result"]["pickup_5"]) != 1:
                         stats["crumbs"]['total'] += 40
                 else:
                     stats["pull_result"]["other_5"] += 1
                     stats["logs"]['other'].append(f"{stats['raw']["pulls"]}")
-                    stats["logs"]['total'].append(f"{stats['raw']["pulls"]}")
                     stats["crumbs"]['total'] += 40
                 continue
             

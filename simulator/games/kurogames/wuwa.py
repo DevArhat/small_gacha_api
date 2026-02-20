@@ -178,15 +178,14 @@ class WutheringWaves(Game):
                     else:
                         guaranteed = True
                 
+                stats["logs"]["total"].append(f"{stats["raw"]["pulls"]}")
                 if is_pickup:
                     stats["pull_result"]["pickup_5"] += 1
                     stats["logs"]["target"].append(f"{stats["raw"]["pulls"]}")
-                    stats["logs"]["total"].append(f"{stats["raw"]["pulls"]}")
                 else:
                     stats['pull_result']["other_5"] += 1
                     stats["crumbs"]["total"] += 30
                     stats["logs"]["other"].append(f"{stats["raw"]["pulls"]}")
-                    stats["logs"]["total"].append(f"{stats["raw"]["pulls"]}")
                 continue
             
             # 4성: 6.0% 확률, 10회차 확정

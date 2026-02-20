@@ -1,7 +1,7 @@
 from simulator.games._base import Game
 import random
 
-from simulator.games.hoyoverse import arrange_stats, init_stats
+from simulator.games.hoyoverse import arrange_stats, init_stats, v2_init_stats
 
 
 # 5성 관련 확률 정리
@@ -111,4 +111,82 @@ class HonkaiStarRail(Game):
             stats["pull_result"]["weapon_3"] += 1
                 
         return arrange_stats(stats, 20)
-  
+
+    def v2_run_simulation(self, target_rank):
+        # 0보다 작거나 6보다 큰 타겟 돌파가 들어오면 0 or 6돌로 강제 고정
+        target_rank = max(0, min(target_rank, 6))
+            
+        target_copies = target_rank + 1
+        stats = v2_init_stats()
+        
+        stats['game'] = self.game_name
+        stats['target_rank'] = target_rank
+        
+        stack_5 = 0
+        stack_4 = 0
+        guaranteed = False
+        
+        while stats['pull_result']["pickup_5"] < target_copies:
+            stats['raw']["pulls"] += 1
+            stack_5 += 1
+            stack_4 += 1
+            
+            # 이번 회차의 랜덤 숫자 발급
+            curr_random = random.random()
+            
+            # 5성 확률 계산
+            rate_5 = 0.006
+            if stack_5 >= 74:
+                rate_5 = 0.006 + (stack_5 - 73) * 0.06
+            
+            # 5성 획득 판정
+            if stack_5 == 90 or curr_random < rate_5:
+                stack_5 = 0
+                is_pickup = False
+                
+                if guaranteed:
+                    is_pickup = True
+                    guaranteed = False
+                else:
+                    if random.choice([True, False]):
+                        is_pickup = True
+                    else:
+                        guaranteed = True
+                
+                if is_pickup:
+                    stats["logs"]['target'].append(f"{stats['raw']["pulls"]}")
+                    stats["logs"]['total'].append(f"{stats['raw']["pulls"]}")
+                    stats["pull_result"]["pickup_5"] += 1
+                    if int(stats["pull_result"]["pickup_5"]) == 1:
+                        pass
+                    else:
+                        stats["crumbs"]['total'] += 40
+                else:
+                    stats["pull_result"]["other_5"] += 1
+                    stats["logs"]['other'].append(f"{stats['raw']["pulls"]}")
+                    stats["logs"]['total'].append(f"{stats['raw']["pulls"]}")
+                    stats["crumbs"]['total'] += 40
+                continue
+            
+            # 4성 획득 판정 (10회 천장)
+            # 5.1% 확률, 10회차에 확정
+            # 반천 확천 사이클 있음, 확업4성캐랑 기타4성(캐릭+광추)전체 가 반반 나눠가짐
+            # 4성 획득 시 50% 확률로 확률업 4성
+            # 위의 내용은 무시하고 모든 4성 캐릭터는 풀돌 상태인 걸로 가정
+            # 4성 아이템 비중에서 광추랑 캐릭터가 반반갈라 파이 먹고 있다고 치고
+            # 4성 획득 중에서 25% 확률로는 광추가 떠서 스타라이트가 8개만 나왔다고 시뮬레이트
+            # 더 좋은 예측 모델이 있으면 스타라이트 관련된 부분은 수정 필요함
+            rate_4 = 0.051
+            if stack_4 >= 10 or curr_random < rate_4:
+                stats["pull_result"]["star_4"] += 1
+                stats["crumbs"]['total'] += 20
+                stack_4 = 0
+                # 광추가 떴는지 캐릭터가 떴는지 판단하는 랜덤숫자
+                if random.random() < 0.25:
+                    stats["crumbs"]['total'] -= 12
+                continue
+            # 나머지는 그냥 '광추'로 처리
+            stats["pull_result"]["weapon_3"] += 1
+                
+        return arrange_stats(stats, 20)
+ 
